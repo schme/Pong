@@ -1,0 +1,3 @@
+Pong pienillä vivahteilla. Värien vaihtoa, useita palloja, nopeuksia.
+
+Mahdollisesti useampi pelaaja.
