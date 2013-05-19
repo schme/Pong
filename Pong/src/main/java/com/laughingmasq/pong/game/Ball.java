@@ -5,18 +5,25 @@ package com.laughingmasq.pong.game;
  */
 public class Ball {
 
-    private int posX = 0;
-    private int posY = 0;
+    private double posX = 0;
+    private double posY = 0;
+    private double dirX = 0;
+    private double dirY = 0;
+    private double velX = 0;
+    private double velY = 0;
 
-    public Ball() {
+    private int radius = 0;
 
+
+    public Ball(int radius) {
+        this.radius = radius;
     }
 
-    public int getPosX() {
+    public double getPosX() {
         return posX;
     }
 
-    public int getPosY() {
+    public double getPosY() {
         return posY;
     }
 
