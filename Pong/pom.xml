@@ -78,11 +78,12 @@
                         <id>unpacknatives</id>
                         <phase>generate-resources</phase>
                         <goals>
-                            <!--suppress MavenModelInspection (this line is for IDEA)-->
+                            <!-- suppress MavenModelInspection (this line is for IDEA)-->
                             <goal>copy</goal>
                         </goals>
                     </execution>
                 </executions>
+                
             </plugin>
         </plugins>
     </build>
