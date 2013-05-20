@@ -1,25 +1,24 @@
 package com.laughingmasq.pong;
 
 import com.laughingmasq.pong.game.Board;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import com.laughingmasq.pong.gui.Gui;
 
 /**
  * @author schme
  */
-public class Game implements ActionListener {
+public class Game {
 
     private Board board = null;
+    private Gui gui	= null;
 
     public Game() {
         this.board = new Board();
+        this.gui   = new Gui();
     }
 
     
-    public void run() {}
-
-    
-    public void actionPerformed(ActionEvent ae) {
+    public void run() {
+    	gui.run();
     }
 
 }
