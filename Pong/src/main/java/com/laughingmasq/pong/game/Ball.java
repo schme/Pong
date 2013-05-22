@@ -1,31 +1,21 @@
 package com.laughingmasq.pong.game;
 
+import java.util.Random;
+
 /**
  * @author schme
  */
-public class Ball {
+public class Ball extends Entity {
 
-    private double posX = 0;
-    private double posY = 0;
-    private double dirX = 0;
-    private double dirY = 0;
-    private double velX = 0;
-    private double velY = 0;
-
-    private int radius = 0;
+    private int radius = 30;
+    
+    private Random rng;
 
 
-    public Ball(int radius) {
-        this.radius = radius;
+    public Ball() {
+    	super(1400/2, 900/2);
+    	
+    	rng = new Random();
     }
-
-    public double getPosX() {
-        return posX;
-    }
-
-    public double getPosY() {
-        return posY;
-    }
-
-
+    
 }
