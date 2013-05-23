@@ -1,3 +1,12 @@
-Pong pienillä vivahteilla. Värien vaihtoa, useita palloja, nopeuksia.
+﻿Pong klooni kahdelle hengelle.
 
-Mahdollisesti useampi pelaaja.
+Features:
+
+- Haastava ja mielenkiintoinen kahden pelaajan vastakkainasettelu
+- Strategointia
+- 3D maailma
+- Power uppeja, sekä muuttuvia olosuhteita
+- Hämmästyttäviä visuaalisia efektejä
+- Kauniit äänet sekä musiikki
+- Projektilla on Blizzardin tuki ja hyväksyntä
+- Tulossa: <Pong Clone: The Film>

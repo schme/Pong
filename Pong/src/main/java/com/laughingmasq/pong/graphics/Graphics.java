@@ -13,24 +13,22 @@ import com.laughingmasq.pong.InputHandler;
 public class Graphics {
 	
 	
-	private String WINDOW_TITLE = "Pong v0.01";
+	private String title = "Pong v0.01";
+	
 	
 	private int resolutionX = 1440;
 	private int resolutionY = 900;
-	
-	/** Object with all the control of controls */
-	private InputHandler inputHandler;
 
+	
     public Graphics() {
     	initialize();
-    	inputHandler = new InputHandler();
     }
 
     
     private void initialize() {
     	
     	
-    	Display.setTitle(WINDOW_TITLE);
+    	Display.setTitle(title);
     	    	
         try {
     	    Display.setDisplayMode(new DisplayMode(resolutionX,resolutionY));
@@ -40,22 +38,26 @@ public class Graphics {
     	    System.exit(0);
     	}
      
-    	
         
     }
     
     
-    public void run() {
-
-    	while (!Display.isCloseRequested()) {
+    public boolean isCloseRequested() {
+    	return Display.isCloseRequested();
+    }
+    
+    
+    public void draw() {
      
-    	    // render here
+    	// render here
      
-    	    Display.update(); //Swaps the framebuffer
-    	}
-     
-    	Display.destroy();
+    	Display.update(); //Swaps the framebuffer
         
+    }
+    
+    
+    public void destroy() {
+    	Display.destroy();
     }
 
 }

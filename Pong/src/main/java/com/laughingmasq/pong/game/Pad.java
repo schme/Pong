@@ -12,13 +12,9 @@ public class Pad extends Entity {
 	//How far the pad should be from the side
 	//TODO: adjust
 	private int padding = 50;
-	
-	//TODO:remove these magics
-	private int boardWidth = 1400;
-	private int boardHeight = 900;
 
 	
-    public Pad(int side) {
+    public Pad(int side, double boardWidth, double boardHeight) {
     	super(0,0);
     	
     	//Left pad

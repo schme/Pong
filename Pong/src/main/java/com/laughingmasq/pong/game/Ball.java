@@ -12,10 +12,12 @@ public class Ball extends Entity {
     private Random rng;
 
 
-    public Ball() {
-    	super(1400/2, 900/2);
+    public Ball(double posX, double posY) {
+    	super(posX, posY);
     	
     	rng = new Random();
+    	super.setVelX(rng.nextDouble() * 5);
+    	super.setVelY(rng.nextDouble() * 5);
     }
     
 }

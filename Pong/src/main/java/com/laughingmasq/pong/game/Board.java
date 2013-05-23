@@ -9,18 +9,22 @@ import java.util.List;
  * @author schme
  */
 public class Board {
+	
+	private final double boardWidth = 1440;
+	private final double boardHeight = 900;
 
     private Ball ball;
     private Pad padLeft;
     private Pad padRight;
     
-    /** List of entities for drawing purposes */
+
     private List<Entity> entities = new ArrayList<Entity>();
     
+    
     public Board() {
-        this.ball = new Ball();
-        this.padLeft = new Pad(0);
-        this.padRight = new Pad(1);
+        this.ball = new Ball(boardWidth, boardHeight);
+        this.padLeft = new Pad(0, boardWidth, boardHeight);
+        this.padRight = new Pad(1, boardWidth, boardHeight);
         
         //add entitities
         entities.add(this.ball);
@@ -29,6 +33,7 @@ public class Board {
         
     }
 
+    
     public Ball getBall() {
 		return ball;
 	}
