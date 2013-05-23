@@ -9,7 +9,7 @@ import com.laughingmasq.pong.graphics.Graphics;
  */
 public class Game {
 	
-	private boolean playing = true;
+	private boolean playing = false;
 
 	/** Logical */
     private Board board;
@@ -28,6 +28,8 @@ public class Game {
 
     
     public void run() {
+    	
+    	playing = true;
     	
     	
     	while( playing && !graphics.isCloseRequested() ) {

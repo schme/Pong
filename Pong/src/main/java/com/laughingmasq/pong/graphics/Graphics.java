@@ -30,6 +30,7 @@ public class Graphics {
 	
 	private int resolutionX = 1440;
 	private int resolutionY = 900;
+	private int fps = 60;
 
 	
     public Graphics() {
@@ -44,18 +45,17 @@ public class Graphics {
     	Display.setResizable(true);
     	    	
         try {
-    	    Display.setDisplayMode(new DisplayMode(resolutionX,resolutionY));
+        	
+    	    Display.setDisplayMode(new DisplayMode(resolutionX,resolutionY));  	    
+    	    Display.create();
     	    
-    	    glDisable(GL_DEPTH_TEST);
-    	    
+    	    //glDisable(GL_DEPTH_TEST);   
     	    glEnable(GL_BLEND);
     	    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     	    
     	    glClearColor(0f, 0f, 0f, 0f);
     	    
-    	    //init here
     	    
-    	    Display.create();
     	} catch (LWJGLException e) {
     	    e.printStackTrace();
     	    System.exit(0);
@@ -71,11 +71,21 @@ public class Graphics {
     
     
     public void draw() {
+    	
+    	if(Display.wasResized()) {
+    		resize();
+    	}
      
     	// render here
      
     	Display.update(); //Swaps the framebuffer
+    	Display.sync(fps);
         
+    }
+    
+    
+    public void resize() {
+    	glViewport(0, 0, Display.getWidth(), Display.getHeight());
     }
     
     
