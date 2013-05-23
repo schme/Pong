@@ -3,3 +3,4 @@
 19.5 - 30min - kohti dl
 20.5 - 1h - LWJGL ujuttamista
 22.5 - 2h - LWJGL ujuttamista
+23.5 - 1h - Spritejä

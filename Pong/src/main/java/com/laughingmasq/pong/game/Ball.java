@@ -2,6 +2,8 @@ package com.laughingmasq.pong.game;
 
 import java.util.Random;
 
+import com.laughingmasq.pong.graphics.SpriteTypes;
+
 /**
  * @author schme
  */
@@ -13,7 +15,7 @@ public class Ball extends Entity {
 
 
     public Ball(double posX, double posY) {
-    	super(posX, posY);
+    	super(SpriteTypes.BALL, posX, posY);
     	
     	rng = new Random();
     	super.setVelX(rng.nextDouble() * 5);

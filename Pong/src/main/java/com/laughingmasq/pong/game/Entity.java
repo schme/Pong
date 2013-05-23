@@ -1,6 +1,7 @@
 package com.laughingmasq.pong.game;
 
 import com.laughingmasq.pong.graphics.Sprite;
+import com.laughingmasq.pong.graphics.SpriteFactory;
 import com.laughingmasq.pong.graphics.SpriteTypes;
 
 public abstract class Entity {

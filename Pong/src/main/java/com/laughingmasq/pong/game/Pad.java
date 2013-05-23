@@ -1,6 +1,8 @@
 
 package com.laughingmasq.pong.game;
 
+import com.laughingmasq.pong.graphics.SpriteTypes;
+
 /**
  * @author schme
  */
@@ -14,15 +16,15 @@ public class Pad extends Entity {
 	private int padding = 50;
 
 	
-    public Pad(int side, double boardWidth, double boardHeight) {
-    	super(0,0);
+    public Pad(SpriteTypes type, double boardWidth, double boardHeight) {
+    	super(type,0,0);
     	
     	//Left pad
-    	if( side == 0) {
+    	if(type == SpriteTypes.LEFTPAD) {
     		super.setPosX(padding);
     		super.setPosY(boardHeight/2 - height/2);
     	//Right pad
-    	} else if( side == 1) {
+    	} else if(type == SpriteTypes.RIGHTPAD) {
     		super.setPosX(boardWidth - width - 50);
     		super.setPosY(boardHeight/2 - height/2);
     	}
