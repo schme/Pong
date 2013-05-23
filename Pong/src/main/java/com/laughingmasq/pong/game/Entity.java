@@ -2,7 +2,7 @@ package com.laughingmasq.pong.game;
 
 import com.laughingmasq.pong.graphics.Sprite;
 import com.laughingmasq.pong.graphics.SpriteFactory;
-import com.laughingmasq.pong.graphics.SpriteTypes;
+import com.laughingmasq.pong.graphics.SpriteType;
 
 public abstract class Entity {
 	
@@ -15,7 +15,7 @@ public abstract class Entity {
 	private Sprite sprite;
 	
 	
-	public Entity (SpriteTypes type, double posX, double posY) {
+	public Entity (SpriteType type, double posX, double posY) {
 		this.posX = posX;
 		this.posY = posY;
 		

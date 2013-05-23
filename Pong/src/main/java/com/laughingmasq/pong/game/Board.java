@@ -4,7 +4,7 @@ package com.laughingmasq.pong.game;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.laughingmasq.pong.graphics.SpriteTypes;
+import com.laughingmasq.pong.graphics.SpriteType;
 
 
 /**
@@ -24,9 +24,10 @@ public class Board {
     
     
     public Board() {
+    	
         this.ball = new Ball(boardWidth, boardHeight);
-        this.padLeft = new Pad(SpriteTypes.LEFTPAD, boardWidth, boardHeight);
-        this.padRight = new Pad(SpriteTypes.RIGHTPAD, boardWidth, boardHeight);
+        this.padLeft = new Pad(SpriteType.LEFTPAD, boardWidth, boardHeight);
+        this.padRight = new Pad(SpriteType.RIGHTPAD, boardWidth, boardHeight);
         
         //add entitities
         entities.add(this.ball);
