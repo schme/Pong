@@ -65,6 +65,8 @@ public abstract class Entity {
 		this.posY += velY;
 	}
 	
-	public void draw() {}
+	public void draw() {
+		sprite.draw();
+	}
 	
 }

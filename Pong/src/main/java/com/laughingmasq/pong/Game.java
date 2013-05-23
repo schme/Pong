@@ -1,7 +1,9 @@
 package com.laughingmasq.pong;
 
-import com.laughingmasq.pong.game.Board;
-import com.laughingmasq.pong.graphics.Graphics;
+import java.util.List;
+
+import com.laughingmasq.pong.game.*;
+import com.laughingmasq.pong.graphics.*;
 
 /**
  * @author schme
@@ -33,10 +35,11 @@ public class Game {
     	
     	
     	while( playing && !graphics.isCloseRequested() ) {
-    		graphics.draw();
+    		graphics.draw(board.getEntities());
     	}
     	
     	graphics.destroy();
     }
+    
 
 }
