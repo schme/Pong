@@ -22,7 +22,7 @@ public abstract class Entity {
 		this.velX = 0;
 		this.velY = 0;
 		
-		this.sprite = new SpriteFactory(type).create();
+		this.sprite = new SpriteFactory(type).create(this);
 	}
 
 	

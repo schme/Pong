@@ -22,4 +22,7 @@ public class Ball extends Entity {
     	super.setVelY(rng.nextDouble() * 5);
     }
     
+    public int getRadius() {
+		return radius;
+	}
 }

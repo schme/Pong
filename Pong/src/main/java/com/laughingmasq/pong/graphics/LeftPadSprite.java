@@ -2,12 +2,18 @@ package com.laughingmasq.pong.graphics;
 
 import org.lwjgl.opengl.GL11;
 
-public class LeftPadSprite implements Sprite {
+import com.laughingmasq.pong.game.Entity;
+
+public class LeftPadSprite extends Sprite {
+
+	public LeftPadSprite(Entity e) {
+		super(e);
+	}
 
 	@Override
 	public void draw() {
 		// PLACEHOLDERS FOR TESTING
-		GL11.glColor3f(0.5f,0.0f,0.0f);
+		GL11.glColor3f(1.0f,0.5f,0.8f);
 		 
 	    // draw quad
 	    GL11.glBegin(GL11.GL_QUADS);

@@ -1,5 +1,6 @@
 package com.laughingmasq.pong.graphics;
 
+import com.laughingmasq.pong.game.Entity;
 import com.laughingmasq.pong.graphics.SpriteType;
 
 public class SpriteFactory {
@@ -10,19 +11,19 @@ public class SpriteFactory {
 		this.type = type;
 	}
 	
-	public Sprite create() {
+	public Sprite create(Entity e) {
 		
 		Sprite sprite = null;
 		
 		switch(type) {
 			case BALL:
-				sprite = new BallSprite();
+				sprite = new BallSprite(e);
 				break;
 			case LEFTPAD:
-				sprite = new LeftPadSprite();
+				sprite = new LeftPadSprite(e);
 				break;
 			case RIGHTPAD:
-				sprite = new RightPadSprite();
+				sprite = new RightPadSprite(e);
 				break;
 		}
 		
