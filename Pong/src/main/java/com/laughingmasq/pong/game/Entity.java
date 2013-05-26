@@ -6,16 +6,16 @@ import com.laughingmasq.pong.graphics.SpriteType;
 
 public abstract class Entity {
 	
-	private double posX;
-	private double posY;
+	private float posX;
+	private float posY;
 	
-	private double velX;
-	private double velY;
+	private float velX;
+	private float velY;
 	
 	private Sprite sprite;
 	
 	
-	public Entity (SpriteType type, double posX, double posY) {
+	public Entity (SpriteType type, float posX, float posY) {
 		this.posX = posX;
 		this.posY = posY;
 		
@@ -26,11 +26,11 @@ public abstract class Entity {
 	}
 
 	
-	public double getPosX() {
+	public float getPosX() {
 		return posX;
 	}
 	
-	public double getPosY() {
+	public float getPosY() {
 		return posY;
 	}
 	
@@ -43,19 +43,19 @@ public abstract class Entity {
 	}
 	
 	
-	public void setPosX(double posX) {
+	public void setPosX(float posX) {
 		this.posX = posX;
 	}
 	
-	public void setPosY(double posY) {
+	public void setPosY(float posY) {
 		this.posY = posY;
 	}
 	
-	public void setVelX(double velX) {
+	public void setVelX(float velX) {
 		this.velX = velX;
 	}
 	
-	public void setVelY(double velY) {
+	public void setVelY(float velY) {
 		this.velY = velY;
 	}
 	

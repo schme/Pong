@@ -9,17 +9,17 @@ import com.laughingmasq.pong.graphics.SpriteType;
  */
 public class Ball extends Entity {
 
-    private int radius = 30;
+    private int radius = 15;
     
     private Random rng;
 
 
-    public Ball(double posX, double posY) {
+    public Ball(float posX, float posY) {
     	super(SpriteType.BALL, posX, posY);
     	
     	rng = new Random();
-    	super.setVelX(rng.nextDouble() * 5);
-    	super.setVelY(rng.nextDouble() * 5);
+    	super.setVelX(rng.nextFloat() * 5);
+    	super.setVelY(rng.nextFloat() * 5);
     }
     
     public int getRadius() {

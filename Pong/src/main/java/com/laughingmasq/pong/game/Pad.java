@@ -8,7 +8,7 @@ import com.laughingmasq.pong.graphics.SpriteType;
  */
 public class Pad extends Entity {
 	
-	private int width = 50;
+	private int width = 30;
 	private int height = 140;
 	
 	//How far the pad should be from the side
@@ -16,7 +16,7 @@ public class Pad extends Entity {
 	private int padding = 50;
 
 	
-    public Pad(SpriteType type, double boardWidth, double boardHeight) {
+    public Pad(SpriteType type, float boardWidth, float boardHeight) {
     	super(type,0,0);
     	
     	//Left pad

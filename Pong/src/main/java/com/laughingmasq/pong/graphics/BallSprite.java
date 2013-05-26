@@ -6,31 +6,32 @@ import com.laughingmasq.pong.game.Entity;
 import com.laughingmasq.pong.game.Ball;
 
 public class BallSprite extends Sprite {
-	
-	private int radius;
 
-	public BallSprite(Entity e) {
-		super(e);
+	final float DEG2RAD = (float)3.14159/180;
+			
+	public BallSprite(Entity entity) {
+		super(entity);
 	}
-	
-	private void getRadius() {
-		int radius = ((Ball)super.getEntity()).getRadius();
-		
+
+	private float getRadius() {
+		 return ((Ball) super.getEntity()).getRadius();
 	}
 
 	@Override
 	public void draw() {
-		
-		// PLACEHOLDERS FOR TESTING
+
+		//placeholder graphics
 		GL11.glColor3f(0.6f,1.0f,0.6f);
-		 
-	    // draw quad
-	    GL11.glBegin(GL11.GL_QUADS);
-	    GL11.glVertex2f(100,600);
-		GL11.glVertex2f(100+200,100+600);
-		GL11.glVertex2f(100+200,600+200);
-		GL11.glVertex2f(100,100+200);
-	    GL11.glEnd();
-		
+
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+
+		for (int i=0; i < 360; i++)
+		{
+			float degInRad = i*DEG2RAD;
+			GL11.glVertex2f((float)Math.cos(degInRad)*getRadius() + super.getPositionX(),
+							(float)Math.sin(degInRad)*getRadius() + super.getPositionY());
+		}
+
+		GL11.glEnd();
 	}
 }

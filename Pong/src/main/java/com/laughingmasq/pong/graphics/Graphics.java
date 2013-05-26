@@ -1,8 +1,6 @@
 
 package com.laughingmasq.pong.graphics;
 
-import static org.lwjgl.opengl.GL11.*;
-
 import java.util.List;
 
 import org.lwjgl.LWJGLException;
@@ -43,14 +41,15 @@ public class Graphics {
     	    Display.setDisplayMode(new DisplayMode(resolutionX,resolutionY));  	    
     	    Display.create();
     	    
+    	    
     		GL11.glMatrixMode(GL11.GL_PROJECTION);
     		GL11.glLoadIdentity();
     		GL11.glOrtho(0, resolutionX, 0, resolutionY, 1, -1);
     		GL11.glMatrixMode(GL11.GL_MODELVIEW);
     		
     	    //glDisable(GL_DEPTH_TEST);   
-    	    GL11.glEnable(GL_BLEND);
-    	    GL11.glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    	    GL11.glEnable(GL11.GL_BLEND);
+    	    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
     	    
     	    GL11.glClearColor(0f, 0f, 0f, 0f);
     	    
@@ -86,7 +85,7 @@ public class Graphics {
     
     
     public void resize() {
-    	glViewport(0, 0, Display.getWidth(), Display.getHeight());
+    	GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
     }
     
     

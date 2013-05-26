@@ -12,8 +12,8 @@ import com.laughingmasq.pong.graphics.SpriteType;
  */
 public class Board {
 	
-	private final double boardWidth = 1440;
-	private final double boardHeight = 900;
+	private final float boardWidth = 1440;
+	private final float boardHeight = 900;
 
     private Ball ball;
     private Pad padLeft;
@@ -25,7 +25,7 @@ public class Board {
     
     public Board() {
     	
-        this.ball = new Ball(boardWidth, boardHeight);
+        this.ball = new Ball(boardWidth/2, boardHeight/2);
         this.padLeft = new Pad(SpriteType.LEFTPAD, boardWidth, boardHeight);
         this.padRight = new Pad(SpriteType.RIGHTPAD, boardWidth, boardHeight);
         

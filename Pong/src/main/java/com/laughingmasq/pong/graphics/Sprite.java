@@ -6,17 +6,20 @@ public abstract class Sprite {
 	
 	private Entity entity;
 	
-	private double posX;
-	private double posY;
-	
-	public Sprite(Entity e) {
-		this.entity = e;
-		this.posX = e.getPosX();
-		this.posY = e.getPosY();
+	public Sprite(Entity entity) {
+		this.entity = entity;
 	}
 	
 	protected Entity getEntity() {
 		return entity;
+	}
+	
+	protected float getPositionX() {
+		return entity.getPosX();
+	}
+	
+	protected float getPositionY() {
+		return entity.getPosY();
 	}
 	
 	abstract public void draw();
