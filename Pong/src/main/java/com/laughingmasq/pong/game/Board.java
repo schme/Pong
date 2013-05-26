@@ -36,6 +36,11 @@ public class Board {
         
     }
 
+    public void move() {
+    	for( Entity e : entities) {
+    		e.move();
+    	}
+    }
     
     public Ball getBall() {
 		return ball;

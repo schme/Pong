@@ -35,6 +35,7 @@ public class Game {
     	
     	
     	while( playing && !graphics.isCloseRequested() ) {
+    		board.move();
     		graphics.draw(board.getEntities());
     	}
     	
