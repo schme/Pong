@@ -14,7 +14,7 @@ public class BallSprite extends Sprite {
 	}
 
 	private float getRadius() {
-		 return ((Ball) super.getEntity()).getRadius();
+		 return ((Ball) getEntity()).getRadius();
 	}
 
 	@Override
@@ -28,8 +28,8 @@ public class BallSprite extends Sprite {
 		for (int i=0; i < 360; i++)
 		{
 			float degInRad = i*DEG2RAD;
-			GL11.glVertex2f((float)Math.cos(degInRad)*getRadius() + super.getPositionX(),
-							(float)Math.sin(degInRad)*getRadius() + super.getPositionY());
+			GL11.glVertex2f((float)Math.cos(degInRad)*getRadius() + getPositionX(),
+							(float)Math.sin(degInRad)*getRadius() + getPositionY());
 		}
 
 		GL11.glEnd();

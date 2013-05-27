@@ -70,12 +70,12 @@ public class Graphics {
     
     public void draw(List<Entity> entities) {
     	
-    	GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
-    	
     	if(Display.wasResized()) {
     		resize();
     	}
-     
+    	
+    	GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+    	
     	for( Entity e : entities) {
     		e.draw();
     	}

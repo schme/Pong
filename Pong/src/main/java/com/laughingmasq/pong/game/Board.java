@@ -8,6 +8,7 @@ import com.laughingmasq.pong.graphics.SpriteType;
 
 
 /**
+ * Board class represents the current playing board and the rules within it.
  * @author schme
  */
 public class Board {
@@ -19,15 +20,31 @@ public class Board {
     private Pad padLeft;
     private Pad padRight;
     
+	//How far the pad should be from the side
+	//TODO: adjust
+	private int padPadding = 50;
+	private int padWidth = 15;
+	private int padHeight = 140;
+    
 
     private List<Entity> entities = new ArrayList<Entity>();
     
     
+    /**
+     * Creates one ball and left- and right pads in their corresponding 
+     * positions.
+     */
     public Board() {
     	
         this.ball = new Ball(boardWidth/2, boardHeight/2);
-        this.padLeft = new Pad(SpriteType.LEFTPAD, boardWidth, boardHeight);
-        this.padRight = new Pad(SpriteType.RIGHTPAD, boardWidth, boardHeight);
+        this.padLeft = new Pad(SpriteType.LEFTPAD, 
+        					padWidth + padPadding, 
+        					boardHeight/2 - padHeight/2, 
+        					padWidth, padHeight);
+        this.padRight = new Pad(SpriteType.RIGHTPAD, 
+        					boardWidth - padWidth - padPadding, 
+        					boardHeight/2 - padHeight/2,
+        					padWidth, padHeight);
         
         //add entitities
         entities.add(this.ball);
@@ -36,9 +53,12 @@ public class Board {
         
     }
 
+    /**
+     * Moves all the entities within thei board limits.
+     */
     public void move() {
     	for( Entity e : entities) {
-    		e.move();
+    		e.moveWithin2D(boardWidth, boardHeight);
     	}
     }
     

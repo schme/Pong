@@ -15,6 +15,7 @@ public class LeftPadSprite extends Sprite {
 
 	@Override
 	public void draw() {
+		
 		// PLACEHOLDERS FOR TESTING
 		GL11.glColor3f(1.0f,0.5f,0.8f);
 		
@@ -33,10 +34,10 @@ public class LeftPadSprite extends Sprite {
 	}
 	
 	private float getWidth() {
-		return ((Pad)super.getEntity()).getWidth();
+		return ((Pad)getEntity()).getWidth();
 	}
 	
 	private float getHeight() {
-		return ((Pad)super.getEntity()).getHeight();
+		return ((Pad)getEntity()).getHeight();
 	}
 }
