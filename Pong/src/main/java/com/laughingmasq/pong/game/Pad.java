@@ -14,6 +14,13 @@ public class Pad extends Entity {
 	
 	/** pixels per frame */
 	private float moveVelocity = 10;
+	private float maxVelocity = 2.5f * moveVelocity;
+	
+	/** times the velocity */
+	private float baseAcceleration = 1.05f;
+	
+	/** for adding acceleration */
+	private boolean moving = false;
 
 
 	/**
@@ -47,6 +54,7 @@ public class Pad extends Entity {
      * Sets the pad to move up.
      */
     public void movingUp() {
+    	moving = true;
     	setVelY(moveVelocity);
     }
     
@@ -55,6 +63,7 @@ public class Pad extends Entity {
      * Sets the pad to move down.
      */
     public void movingDown() {
+    	moving = true;
     	setVelY(-moveVelocity);
     }
     
@@ -63,13 +72,26 @@ public class Pad extends Entity {
      * Stops all movement from the pad.
      */
     public void stop() {
-    	setVelX(0);
+    	setVelX(0);		// just in case
     	setVelY(0);
+    	moving = false;
     }
     
     
     @Override
     public void moveWithin2D(float spaceWidth, float spaceHeight) {
+    	
+    	/**
+    	 * TODO: Fix: The other player can prevent other players acceleration
+    	 * by wiggling their pad up and down.
+    	 */
+    	if( moving) {
+    		if( Math.abs(getVelY()) > maxVelocity) { 
+    			setVelY( (getVelY() > 0 ? maxVelocity : -maxVelocity));
+    		} else {
+    			setVelY(getVelY() * baseAcceleration);
+    		}
+    	}
     	
     	/** if we would crash the top of the border, just move to the edge */
     	if( getPosY() + getVelY() > spaceHeight - height) { 

@@ -29,8 +29,8 @@ public class Ball extends Entity {
     	super(EntityType.BALL, posX, posY);
     	
     	rng = new Random();
-    	setVelX(rng.nextFloat() * 5);
-    	setVelY(rng.nextFloat() * 5);
+    	setVelX(rng.nextFloat() * 15);
+    	setVelY(rng.nextFloat() * 15);
     }
     
     public int getRadius() {

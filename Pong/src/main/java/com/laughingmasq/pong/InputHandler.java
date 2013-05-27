@@ -47,6 +47,7 @@ public class InputHandler {
 	
 	
 	private void rightPlayer() {
+		
 		if( Keyboard.isKeyDown(KEY_UP)) {
 			board.getPadRight().movingUp();
 			
