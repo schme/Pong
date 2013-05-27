@@ -4,3 +4,5 @@
 20.5 - 1h - LWJGL ujuttamista
 22.5 - 2h - LWJGL ujuttamista
 23.5 - 3h - Spritejä, grafiikka objektien järjestelyä
+25.5 - 2h - Grafiikan placeholderit
+26.5 - 3h - Pari testiä, javadocseja, pallolle liikettä

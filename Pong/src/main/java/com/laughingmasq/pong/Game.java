@@ -1,7 +1,5 @@
 package com.laughingmasq.pong;
 
-import java.util.List;
-
 import com.laughingmasq.pong.game.*;
 import com.laughingmasq.pong.graphics.*;
 
@@ -19,10 +17,6 @@ public class Game {
     /** Graphical */
     private Graphics graphics;
     
-    /** Input */
-    private static InputHandler inputHandler = new InputHandler();
-
-    
     public Game() {
         this.board = new Board();
         this.graphics   = new Graphics();
@@ -35,6 +29,7 @@ public class Game {
     	
     	
     	while( playing && !graphics.isCloseRequested() ) {
+    		board.handleInput();
     		board.move();
     		graphics.draw(board.getEntities());
     	}

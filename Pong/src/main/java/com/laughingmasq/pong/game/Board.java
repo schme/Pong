@@ -4,7 +4,8 @@ package com.laughingmasq.pong.game;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.laughingmasq.pong.graphics.SpriteType;
+import com.laughingmasq.pong.EntityType;
+import com.laughingmasq.pong.InputHandler;
 
 
 /**
@@ -19,6 +20,8 @@ public class Board {
     private Ball ball;
     private Pad padLeft;
     private Pad padRight;
+    
+    private InputHandler inputHandler;
     
 	//How far the pad should be from the side
 	//TODO: adjust
@@ -37,11 +40,11 @@ public class Board {
     public Board() {
     	
         this.ball = new Ball(boardWidth/2, boardHeight/2);
-        this.padLeft = new Pad(SpriteType.LEFTPAD, 
+        this.padLeft = new Pad(EntityType.LEFTPAD, 
         					padWidth + padPadding, 
         					boardHeight/2 - padHeight/2, 
         					padWidth, padHeight);
-        this.padRight = new Pad(SpriteType.RIGHTPAD, 
+        this.padRight = new Pad(EntityType.RIGHTPAD, 
         					boardWidth - padWidth - padPadding, 
         					boardHeight/2 - padHeight/2,
         					padWidth, padHeight);
@@ -51,31 +54,43 @@ public class Board {
         entities.add(this.padLeft);
         entities.add(this.padRight);
         
+        inputHandler = new InputHandler(this);
     }
 
+    
     /**
-     * Moves all the entities within thei board limits.
+     * Moves all the entities within their board limits.
      */
     public void move() {
+    	
     	for( Entity e : entities) {
     		e.moveWithin2D(boardWidth, boardHeight);
     	}
     }
     
+    
     public Ball getBall() {
 		return ball;
 	}
+    
     
     public Pad getPadLeft() {
 		return padLeft;
 	}
     
+    
     public Pad getPadRight() {
 		return padRight;
 	}
     
+    
     public List<Entity> getEntities() {
 		return entities;
 	}
+    
+   
+    public void handleInput() {
+    	inputHandler.handleInput();
+    }
     
 }

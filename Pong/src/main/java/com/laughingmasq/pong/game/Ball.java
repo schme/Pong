@@ -2,7 +2,7 @@ package com.laughingmasq.pong.game;
 
 import java.util.Random;
 
-import com.laughingmasq.pong.graphics.SpriteType;
+import com.laughingmasq.pong.EntityType;
 
 /**
  * Ball object for logic.
@@ -11,12 +11,12 @@ import com.laughingmasq.pong.graphics.SpriteType;
  */
 public class Ball extends Entity {
 
-    private int radius = 15;
+    private int radius = 12;
     
     private Random rng;
 
     public Ball() {
-		super(SpriteType.BALL, 0, 0);
+		super(EntityType.BALL, 0, 0);
 	}
 
     
@@ -26,7 +26,7 @@ public class Ball extends Entity {
      * @param posY	Given Y coordinate
      */
     public Ball(float posX, float posY) {
-    	super(SpriteType.BALL, posX, posY);
+    	super(EntityType.BALL, posX, posY);
     	
     	rng = new Random();
     	setVelX(rng.nextFloat() * 5);
@@ -47,7 +47,6 @@ public class Ball extends Entity {
     private boolean insideBorder(float position, float border) {
     	if( position - radius > 0 &&
     		position + radius <= border) {
-    		
     		return true;
     	}
     	
@@ -55,11 +54,11 @@ public class Ball extends Entity {
     }
     
     
-    @Override
     /**
      * If the ball meats a border it turns back in a mirror angle.
-     * TODO: Still travel the trip if you're going to collide.
+     * TODO: Still travel the whole trip if you're going to collide.
      */
+    @Override
     public void moveWithin2D(float spaceWidth, float spaceHeight) {
 
     	boolean xInside = insideBorder(getPosX() + getVelX(), spaceWidth);

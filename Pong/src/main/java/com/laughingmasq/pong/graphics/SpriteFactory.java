@@ -1,13 +1,13 @@
 package com.laughingmasq.pong.graphics;
 
+import com.laughingmasq.pong.EntityType;
 import com.laughingmasq.pong.game.Entity;
-import com.laughingmasq.pong.graphics.SpriteType;
 
 public class SpriteFactory {
 	
-	private SpriteType type;
+	private EntityType type;
 	
-	public SpriteFactory(SpriteType type) {
+	public SpriteFactory(EntityType type) {
 		this.type = type;
 	}
 	

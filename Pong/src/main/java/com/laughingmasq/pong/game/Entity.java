@@ -1,8 +1,8 @@
 package com.laughingmasq.pong.game;
 
+import com.laughingmasq.pong.EntityType;
 import com.laughingmasq.pong.graphics.Sprite;
 import com.laughingmasq.pong.graphics.SpriteFactory;
-import com.laughingmasq.pong.graphics.SpriteType;
 
 
 /**
@@ -32,7 +32,7 @@ public abstract class Entity {
 	 * Create an Entity with a type. Will create a Sprite object.
 	 * @param type	Type of the Entity object.
 	 */
-	public Entity (SpriteType type) {
+	public Entity (EntityType type) {
 		this.sprite = new SpriteFactory(type).create(this);
 	}
 	
@@ -57,7 +57,7 @@ public abstract class Entity {
 	 * @param posX	Given X coordinate.
 	 * @param posY	Given Y coordinate.
 	 */
-	public Entity (SpriteType type, float posX, float posY) {
+	public Entity (EntityType type, float posX, float posY) {
 		this.posX = posX;
 		this.posY = posY;
 		
