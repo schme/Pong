@@ -9,15 +9,17 @@ import com.laughingmasq.pong.EntityType;
  */
 public class Pad extends Entity {
 	
-	private int width = 0;
-	private int height = 0;
+	/** pixels */
+	protected static float PADDING = 50;
+	protected static float WIDTH = 15;
+	protected static float HEIGHT = 140;
 	
 	/** pixels per frame */
-	private float moveVelocity = 10;
-	private float maxVelocity = 2.5f * moveVelocity;
+	protected static float MOVE_VELOCITY = 10;
+	protected static float MAX_ACCELERATION = 2.5f * MOVE_VELOCITY;
 	
 	/** times the velocity */
-	private float baseAcceleration = 1.05f;
+	protected static float BASE_ACCELERATION = 1.05f;
 	
 	/** for adding acceleration */
 	private boolean moving = false;
@@ -27,26 +29,30 @@ public class Pad extends Entity {
 	 * Create a pad with a type, position and size.
 	 * Position is the bottom left corner of the pad.
 	 * 
-	 * @param type		Type of the pad.
-	 * @param posX		Given X coordinate.
-	 * @param posY		Given Y coordinate.
-	 * @param width		Given width of the pad.
-	 * @param height	Given height of the pad.
+	 * @param type			Type of the pad.
+	 * @param boardWidth	Width of the used board.
+	 * @param boardHeight	Height of the used board.
 	 */
-    public Pad(EntityType type, float posX, float posY, int width, int height) {
-    	super(type,posX,posY);
+    public Pad(EntityType type, float boardWidth, float boardHeight) {
+    	super(type);
     	
-    	this.width = width;
-    	this.height = height;
+    	if( type == EntityType.LEFTPAD) {
+    		setPosX( PADDING);
+    		setPosY( boardHeight/2 - HEIGHT/2);
+    		
+    	} else if( type == EntityType.RIGHTPAD) {
+    		setPosX( boardWidth - PADDING - WIDTH);
+    		setPosY( boardHeight/2 - HEIGHT/2);
+    	}
     }
     
     
-    public int getWidth() {
-		return width;
+    public float getWidth() {
+		return WIDTH;
 	}
     
-    public int getHeight() {
-		return height;
+    public float getHeight() {
+		return HEIGHT;
 	}
     
     
@@ -55,7 +61,7 @@ public class Pad extends Entity {
      */
     public void movingUp() {
     	moving = true;
-    	setVelY(moveVelocity);
+    	setVelY(MOVE_VELOCITY);
     }
     
     
@@ -64,7 +70,7 @@ public class Pad extends Entity {
      */
     public void movingDown() {
     	moving = true;
-    	setVelY(-moveVelocity);
+    	setVelY(-MOVE_VELOCITY);
     }
     
     
@@ -86,16 +92,16 @@ public class Pad extends Entity {
     	 * by wiggling their pad up and down.
     	 */
     	if( moving) {
-    		if( Math.abs(getVelY()) > maxVelocity) { 
-    			setVelY( (getVelY() > 0 ? maxVelocity : -maxVelocity));
+    		if( Math.abs(getVelY()) > MAX_ACCELERATION) { 
+    			setVelY( (getVelY() > 0 ? MAX_ACCELERATION : -MAX_ACCELERATION));
     		} else {
-    			setVelY(getVelY() * baseAcceleration);
+    			setVelY(getVelY() * BASE_ACCELERATION);
     		}
     	}
     	
     	/** if we would crash the top of the border, just move to the edge */
-    	if( getPosY() + getVelY() > spaceHeight - height) { 
-    		setPosY( spaceHeight - height);
+    	if( getPosY() + getVelY() > spaceHeight - HEIGHT) { 
+    		setPosY( spaceHeight - HEIGHT);
     	}
     	
     	/** if we crash to the bottom, just move to the edge */

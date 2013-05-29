@@ -21,13 +21,14 @@ public class Ball extends Entity {
 
     
     /**
-     * Create a ball with given coordinations and a random velocity.
-     * @param posX	Given X coordinate
-     * @param posY	Given Y coordinate
+     * Create a ball to the center of board and a random velocity.
+     * @param boardWidth	Width of the used board
+     * @param boardHeight	Height of the used board
      */
-    public Ball(float posX, float posY) {
-    	super(EntityType.BALL, posX, posY);
+    public Ball(float boardWidth, float boardHeight) {
+    	super(EntityType.BALL, boardWidth/2, boardHeight/2);
     	
+    	//TODO: fix this
     	rng = new Random();
     	setVelX(rng.nextFloat() * 15);
     	setVelY(rng.nextFloat() * 15);

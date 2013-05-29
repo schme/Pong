@@ -1,12 +1,17 @@
 package com.laughingmasq.pong.game;
 
-import static org.junit.Assert.*;
 
-import static com.laughingmasq.pong.game.TestVariables.*;
+import static com.laughingmasq.pong.TestVariables.*;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Test the Ball- and Entity- class.
+ * @author schme
+ *
+ */
 public class BallTest {
 	
 	private Ball ball;
@@ -15,15 +20,15 @@ public class BallTest {
 	public void setUp() throws Exception {
 		
 		/* init ball to the middle of the screen */
-		ball = new Ball(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+		ball = new Ball(BOARD_WIDTH/2, BOARD_HEIGHT/2);
 		ball.setVelX(5);
 		ball.setVelY(2);
 	}
 	
 	@Test
 	public void ballIsWhereItIsInitiatedTo() {
-		assertEquals(ball.getPosX(), SCREEN_WIDTH/2, 0.0001);
-		assertEquals(ball.getPosY(), SCREEN_HEIGHT/2, 0.0001);
+		assertEquals(ball.getPosX(), BOARD_WIDTH/2, 0.0001);
+		assertEquals(ball.getPosY(), BOARD_HEIGHT/2, 0.0001);
 	}
 
 	@Test

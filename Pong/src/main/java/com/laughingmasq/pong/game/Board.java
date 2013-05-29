@@ -40,14 +40,8 @@ public class Board {
     public Board() {
     	
         this.ball = new Ball(boardWidth/2, boardHeight/2);
-        this.padLeft = new Pad(EntityType.LEFTPAD, 
-        					padWidth + padPadding, 
-        					boardHeight/2 - padHeight/2, 
-        					padWidth, padHeight);
-        this.padRight = new Pad(EntityType.RIGHTPAD, 
-        					boardWidth - padWidth - padPadding, 
-        					boardHeight/2 - padHeight/2,
-        					padWidth, padHeight);
+        this.padLeft = new Pad(EntityType.LEFTPAD, boardWidth, boardHeight);
+        this.padRight = new Pad(EntityType.RIGHTPAD, boardWidth, boardHeight);
         
         //add entitities
         entities.add(this.ball);
@@ -68,6 +62,14 @@ public class Board {
     	}
     }
     
+    
+    public float getBoardWidth() {
+		return boardWidth;
+	}
+    
+    public float getBoardHeight() {
+		return boardHeight;
+	}
     
     public Ball getBall() {
 		return ball;

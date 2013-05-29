@@ -14,6 +14,7 @@ import com.laughingmasq.pong.graphics.SpriteFactory;
  */
 public abstract class Entity {
 	
+	
 	private float posX = 0;
 	private float posY = 0;
 	
@@ -28,6 +29,7 @@ public abstract class Entity {
 	 */
 	public Entity () {}
 	
+	
 	/**
 	 * Create an Entity with a type. Will create a Sprite object.
 	 * @param type	Type of the Entity object.
@@ -35,6 +37,7 @@ public abstract class Entity {
 	public Entity (EntityType type) {
 		this.sprite = new SpriteFactory(type).create(this);
 	}
+	
 	
 	/**
 	 * Create an Entity with a position but a null Sprite object.
@@ -45,11 +48,9 @@ public abstract class Entity {
 		this.posX = posX;
 		this.posY = posY;
 		
-		this.velX = 0;
-		this.velY = 0;
-		
 		this.sprite = null;
 	}
+	
 	
 	/**
 	 * Create an Entity with a position and a type. Creates the Sprite object.
@@ -60,9 +61,6 @@ public abstract class Entity {
 	public Entity (EntityType type, float posX, float posY) {
 		this.posX = posX;
 		this.posY = posY;
-		
-		this.velX = 0;
-		this.velY = 0;
 		
 		this.sprite = new SpriteFactory(type).create(this);
 	}
