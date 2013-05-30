@@ -1,11 +1,7 @@
 package com.laughingmasq.pong;
 
-import org.lwjgl.LWJGLException;
 import static org.lwjgl.input.Keyboard.*;
-
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-
 import com.laughingmasq.pong.game.Board;
 
 

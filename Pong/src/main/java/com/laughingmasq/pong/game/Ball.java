@@ -11,6 +11,7 @@ import com.laughingmasq.pong.EntityType;
  */
 public class Ball extends Entity {
 
+	/** Initial radius, subject to change during the game */
     private int radius = 12;
     
     private Random rng;
@@ -26,9 +27,17 @@ public class Ball extends Entity {
      * @param boardHeight	Height of the used board
      */
     public Ball(float boardWidth, float boardHeight) {
-    	super(EntityType.BALL, boardWidth/2, boardHeight/2);
+    	super(EntityType.BALL, 0, 0);
     	
-    	//TODO: fix this
+    	
+    	if( boardWidth <= 0 || boardHeight <= 0) {
+    		setPosX(0); setPosY(0);
+    	} else {
+    		setPosX(boardWidth/2); setPosY(boardHeight/2);
+    	}
+    	
+    	
+    	//TODO: fix this, then test this
     	rng = new Random();
     	setVelX(rng.nextFloat() * 15);
     	setVelY(rng.nextFloat() * 15);
@@ -45,13 +54,13 @@ public class Ball extends Entity {
      * @param strain	Given border.
      * @return	True if inside the given restrains.
      */
-    private boolean insideBorder(float position, float border) {
+    protected boolean collidesWithBorder(float position, float border) {
     	if( position - radius > 0 &&
     		position + radius <= border) {
-    		return true;
+    		return false;
     	}
     	
-    	return false;
+    	return true;
     }
     
     
@@ -62,16 +71,19 @@ public class Ball extends Entity {
     @Override
     public void moveWithin2D(float spaceWidth, float spaceHeight) {
 
-    	boolean xInside = insideBorder(getPosX() + getVelX(), spaceWidth);
-    	boolean yInside = insideBorder(getPosY() + getVelY(), spaceHeight);
+    	boolean xCollides = collidesWithBorder(getPosX() + getVelX(), spaceWidth);
+    	boolean yCollides = collidesWithBorder(getPosY() + getVelY(), spaceHeight);
     	
-    	if( !xInside ) {
+    	if( xCollides ) {
     		setVelX(getVelX() * -1);
     	}
-    	if( !yInside) {
+    	
+    	if( yCollides) {
     		setVelY(getVelY() * -1);
     	}
     	
-    	move();
+    	if( !xCollides && !yCollides) {
+    		move();
+    	}
     }
 }

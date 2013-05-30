@@ -9,6 +9,9 @@ import com.laughingmasq.pong.graphics.*;
  */
 public class Game {
 	
+	private int resolutionX = 1440;
+	private int resolutionY = 900;
+	
 	private boolean playing = false;
 
 	/** Logical */
@@ -18,8 +21,8 @@ public class Game {
     private Graphics graphics;
     
     public Game() {
-        this.board = new Board();
-        this.graphics   = new Graphics();
+        this.board 		= new Board(resolutionX, resolutionY);
+        this.graphics   = new Graphics(resolutionX, resolutionY);
     }
 
     

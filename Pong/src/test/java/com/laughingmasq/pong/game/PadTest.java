@@ -29,6 +29,7 @@ public class PadTest {
 
 	@Test
 	public void testLeftPadCorrectCoordinates() {	
+		
 		Pad lPad = new Pad(EntityType.LEFTPAD, BOARD_WIDTH, BOARD_HEIGHT);
 		
 		assertEquals(Pad.PADDING, lPad.getPosX(), 0.0001);
@@ -38,9 +39,9 @@ public class PadTest {
 	
 	@Test
 	public void testLeftPadCorrectAbsurdBoardSizeCoordinates() {
+		
 		final float newBoardWidth = 1234567;
 		final float newBoardHeight = 9877;
-		
 		Pad lPad = new Pad(EntityType.LEFTPAD, newBoardWidth, newBoardHeight);
 		
 		assertEquals(Pad.PADDING, lPad.getPosX(), 0.0001);
@@ -60,9 +61,9 @@ public class PadTest {
 	
 	@Test
 	public void testRightPadCorrectAbsurdBoardSizeCoordinates() {
+		
 		final float newBoardWidth = 9276;
 		final float newBoardHeight = 1892724;
-		
 		Pad rPad = new Pad(EntityType.RIGHTPAD, newBoardWidth, newBoardHeight);
 		
 		assertEquals(newBoardWidth - Pad.PADDING - Pad.WIDTH, rPad.getPosX(), 0.0001);
@@ -72,34 +73,29 @@ public class PadTest {
 	
 	@Test
 	public void testMovingUpSetsVelocityCorrectly() {
+		
 		leftPad.movingUp();
 		rightPad.movingUp();
 		
 		assertEquals(Pad.MOVE_VELOCITY, leftPad.getVelY(), 0.0001);
 		assertEquals(Pad.MOVE_VELOCITY, rightPad.getVelY(), 0.0001);
-		
-		//reset
-		leftPad.stop();
-		rightPad.stop();
 	}
 	
 	
 	@Test
 	public void testMovingDownSetsVelocityCorrectly() {
+		
 		leftPad.movingDown();
 		rightPad.movingDown();
 		
 		assertEquals(-Pad.MOVE_VELOCITY, leftPad.getVelY(), 0.0001);
 		assertEquals(-Pad.MOVE_VELOCITY, rightPad.getVelY(), 0.0001);
-		
-		//reset
-		leftPad.stop();
-		rightPad.stop();
 	}
 	
 	
 	@Test
 	public void testStopRemovesVelocityCorrectly() {
+		
 		leftPad.setVelY(Pad.MOVE_VELOCITY + 5000);
 		leftPad.stop();
 		rightPad.setVelY(-537822);

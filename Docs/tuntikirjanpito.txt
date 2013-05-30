@@ -7,3 +7,6 @@
 25.5 - 2h - Grafiikan placeholderit
 26.5 - 3h - Pari testiä, javadocseja, pallolle liikettä
 27.5 - 2h - Input handling padeille
+28.5 - 1h - Tests/Javadocs
+29.5 - 2h - Tests/Javadocs
+30.5 - 3h - Tests/Javadocs

@@ -8,7 +8,6 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
-import com.laughingmasq.pong.InputHandler;
 import com.laughingmasq.pong.game.Entity;
  
 /**
@@ -20,12 +19,17 @@ public class Graphics {
 	private String title = "Pong v0.01";
 	
 	
-	private int resolutionX = 1440;
-	private int resolutionY = 900;
+	private int resolutionX;
+	private int resolutionY;
 	private int fps = 60;
+	
+	/* for the fun of it, mostly debug */
+	private boolean clearScreen = true;
 
 	
-    public Graphics() {
+    public Graphics(int resolutionX, int resolutionY) {
+    	this.resolutionX = resolutionX;
+    	this.resolutionY = resolutionY;
     	initialize();
     }
 
@@ -74,7 +78,9 @@ public class Graphics {
     		resize();
     	}
     	
-    	GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+    	if(clearScreen) {
+    		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+    	}
     	
     	for( Entity e : entities) {
     		e.draw();

@@ -14,21 +14,14 @@ import com.laughingmasq.pong.InputHandler;
  */
 public class Board {
 	
-	private final float boardWidth = 1440;
-	private final float boardHeight = 900;
+	private float boardWidth;
+	private float boardHeight;
 
     private Ball ball;
     private Pad padLeft;
     private Pad padRight;
     
     private InputHandler inputHandler;
-    
-	//How far the pad should be from the side
-	//TODO: adjust
-	private int padPadding = 50;
-	private int padWidth = 15;
-	private int padHeight = 140;
-    
 
     private List<Entity> entities = new ArrayList<Entity>();
     
@@ -37,9 +30,12 @@ public class Board {
      * Creates one ball and left- and right pads in their corresponding 
      * positions.
      */
-    public Board() {
+    public Board(float boardWidth, float boardHeight) {
     	
-        this.ball = new Ball(boardWidth/2, boardHeight/2);
+    	this.boardWidth = boardWidth;
+    	this.boardHeight = boardHeight;
+    	
+        this.ball = new Ball(boardWidth, boardHeight);
         this.padLeft = new Pad(EntityType.LEFTPAD, boardWidth, boardHeight);
         this.padRight = new Pad(EntityType.RIGHTPAD, boardWidth, boardHeight);
         
