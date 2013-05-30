@@ -26,7 +26,7 @@ public class Pad extends Entity {
 
 
 	/**
-	 * Create a pad with a type, position and size.
+	 * Create a pad with a type, position and
 	 * Position is the bottom left corner of the pad.
 	 * 
 	 * @param type			Type of the pad.
@@ -57,7 +57,7 @@ public class Pad extends Entity {
     
     
     /**
-     * Sets the pad to move up.
+     * Sets the pad to move up (upgrades velocity).
      */
     public void movingUp() {
     	moving = true;
@@ -66,7 +66,7 @@ public class Pad extends Entity {
     
     
     /**
-     * Sets the pad to move down.
+     * Sets the pad to move down (upgrades velocity).
      */
     public void movingDown() {
     	moving = true;
@@ -75,7 +75,7 @@ public class Pad extends Entity {
     
     
     /**
-     * Stops all movement from the pad.
+     * Stops all movement from the pad (sets velocity to zero).
      */
     public void stop() {
     	setVelX(0);		// just in case
@@ -84,6 +84,14 @@ public class Pad extends Entity {
     }
     
     
+    /**
+     * Moves the pad within certain boundaries.
+     * 
+     * Handles the acceleration of the pad when it has been in a continuous
+     * movement.
+     * @param spaceWidth	Spaces X boundary.
+     * @param spaceHeight	Spaces Y boundary.
+     */
     @Override
     public void moveWithin2D(float spaceWidth, float spaceHeight) {
     	

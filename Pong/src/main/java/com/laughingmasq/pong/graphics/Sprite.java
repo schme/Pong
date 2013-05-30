@@ -2,6 +2,11 @@ package com.laughingmasq.pong.graphics;
 
 import com.laughingmasq.pong.game.Entity;
 
+/**
+ * Super class for all sprites. Defines draw() method but doesn't implement.
+ * @author schme
+ *
+ */
 public abstract class Sprite {
 	
 	private Entity entity;

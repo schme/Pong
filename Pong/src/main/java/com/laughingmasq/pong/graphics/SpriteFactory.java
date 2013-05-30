@@ -3,6 +3,14 @@ package com.laughingmasq.pong.graphics;
 import com.laughingmasq.pong.EntityType;
 import com.laughingmasq.pong.game.Entity;
 
+
+/**
+ * Used when entity is created, to give it the corresponding sprite.
+ * 
+ * Exists for easier sprite creation.
+ * @author schme
+ *
+ */
 public class SpriteFactory {
 	
 	private EntityType type;

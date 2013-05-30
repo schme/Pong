@@ -25,7 +25,9 @@ public class Game {
         this.graphics   = new Graphics(resolutionX, resolutionY);
     }
 
-    
+    /**
+     * Starting point for the program.
+     */
     public void run() {
     	
     	playing = true;

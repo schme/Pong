@@ -5,18 +5,31 @@ import org.lwjgl.opengl.GL11;
 import com.laughingmasq.pong.game.Entity;
 import com.laughingmasq.pong.game.Ball;
 
+/**
+ * Sprite for the ball. Doesn't have much options yet, have to add for different
+ * kinds of balls.
+ * @author schme
+ *
+ */
 public class BallSprite extends Sprite {
 
-	final float DEG2RAD = (float)3.14159/180;
+	/** for faster circle drawing */
+	private final float DEG2RAD = (float)3.14159/180;
 			
+	/** Calls the Sprites constructor with given entity */
 	public BallSprite(Entity entity) {
 		super(entity);
 	}
 
+	
 	private float getRadius() {
 		 return ((Ball) getEntity()).getRadius();
 	}
 
+	
+	/**
+	 * Draws the ball.
+	 */
 	@Override
 	public void draw() {
 

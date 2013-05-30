@@ -5,7 +5,11 @@ import org.lwjgl.input.Keyboard;
 import com.laughingmasq.pong.game.Board;
 
 
-
+/**
+ * Handles all incoming input.
+ * @author schme
+ *
+ */
 public class InputHandler {
 	
 	/** for relaying the proper actions */
@@ -20,6 +24,10 @@ public class InputHandler {
 	}
 	
 	
+	/**
+	 * Runs the private methods for handling input and communicates to the board
+	 * what to do.
+	 */
 	public void handleInput() {
 		while( Keyboard.next() ) {
 			leftPlayer();

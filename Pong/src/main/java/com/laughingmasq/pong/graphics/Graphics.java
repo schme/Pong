@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL11;
 import com.laughingmasq.pong.game.Entity;
  
 /**
+ * Combines the graphic settings. Handles most of the calls to lwjgl.
  * @author schme
  */
 public class Graphics {
@@ -27,6 +28,11 @@ public class Graphics {
 	private boolean clearScreen = true;
 
 	
+	/**
+	 * Initializes the graphic environment.
+	 * @param resolutionX	Screen width.
+	 * @param resolutionY	Screen height.
+	 */
     public Graphics(int resolutionX, int resolutionY) {
     	this.resolutionX = resolutionX;
     	this.resolutionY = resolutionY;
@@ -34,6 +40,9 @@ public class Graphics {
     }
 
     
+    /**
+     * Initializes the graphics.
+     */
     private void initialize() {
     	
     	
@@ -67,11 +76,19 @@ public class Graphics {
     }
     
     
+    /**
+     * If X has been pressed.
+     * @return	True if X has been pressed, false otherwise.
+     */
     public boolean isCloseRequested() {
     	return Display.isCloseRequested();
     }
     
     
+    /**
+     * Handles all the drawing.
+     * @param entities
+     */
     public void draw(List<Entity> entities) {
     	
     	if(Display.wasResized()) {
@@ -92,11 +109,17 @@ public class Graphics {
     }
     
     
+    /**
+     * Called when resized.
+     */
     public void resize() {
     	GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
     }
     
     
+    /**
+     * Cleaner, called when exiting.
+     */
     public void destroy() {
     	Display.destroy();
     }
