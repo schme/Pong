@@ -59,16 +59,22 @@ public class Board {
     
     /**
      * Create a random sign.
-     * TODO: THERE HAS TO BE A BETTER WAY
      * @return	Either 1 or -1
      */
     private int randomSign() {
+    	
+    	return (rng.nextBoolean() ? 1 : -1);
+    	
+    	/* It's so pretty I just want to keep it here. Note recursion.
+    	 * Not sure what I was thinking though.
+
     	int n = rng.nextInt(100) - 50;
     	if(n == 0) {
     		return randomSign();
     	}
     	
     	return n/Math.abs(n);
+    	*/
     }
     
     
