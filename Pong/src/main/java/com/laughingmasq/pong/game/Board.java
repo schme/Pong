@@ -3,6 +3,7 @@ package com.laughingmasq.pong.game;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.laughingmasq.pong.EntityType;
 import com.laughingmasq.pong.InputHandler;
@@ -13,6 +14,9 @@ import com.laughingmasq.pong.InputHandler;
  * @author schme
  */
 public class Board {
+	
+	private float ballXVel = 15;
+	private float ballYVelBase = 4;
 	
 	private float boardWidth;
 	private float boardHeight;
@@ -25,6 +29,8 @@ public class Board {
 
     private List<Entity> entities = new ArrayList<Entity>();
     
+    private Random rng;
+    
     
     /**
      * Creates one ball and left- and right pads in their corresponding 
@@ -32,10 +38,13 @@ public class Board {
      */
     public Board(float boardWidth, float boardHeight) {
     	
+    	rng = new Random();
+    	
     	this.boardWidth = boardWidth;
     	this.boardHeight = boardHeight;
     	
-        this.ball = new Ball(boardWidth, boardHeight);
+        this.ball = new Ball(boardWidth, boardHeight, 
+        					 randomSign()*ballXVel, randomSign()*ballYVelBase);
         this.padLeft = new Pad(EntityType.LEFTPAD, boardWidth, boardHeight);
         this.padRight = new Pad(EntityType.RIGHTPAD, boardWidth, boardHeight);
         
@@ -47,6 +56,22 @@ public class Board {
         inputHandler = new InputHandler(this);
     }
 
+    
+    /**
+     * Create a random sign.
+     * TODO: THERE HAS TO BE A BETTER WAY
+     * @return	Either 1 or -1
+     */
+    private int randomSign() {
+    	int n = rng.nextInt(100) - 50;
+    	if(n == 0) {
+    		return randomSign();
+    	}
+    	
+    	return n/Math.abs(n);
+    }
+    
+    
     
     /**
      * Moves all the entities within their board limits.

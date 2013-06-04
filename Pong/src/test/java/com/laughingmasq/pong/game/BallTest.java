@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Test the Ball- and Entity- class.
+ * Test the Ball and Entity classes.
  * @author schme
  *
  */

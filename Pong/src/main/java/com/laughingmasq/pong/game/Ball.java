@@ -43,6 +43,27 @@ public class Ball extends Entity {
     	setVelY(rng.nextFloat() * 15);
     }
     
+    
+    /**
+     * Create a ball to the center of board with set x velocity.
+     * @param boardWidth	Width of the used board
+     * @param boardHeight	Height of the used board
+     * @param xVelocity		Used x velocity for the ball
+     */
+    public Ball(float boardWidth, float boardHeight, float xVelocity) {
+    	this(boardWidth, boardHeight);
+    	
+    	setVelX(xVelocity);
+    }
+    
+    
+    public Ball(float boardWidth, float boardHeight, float xVelocity, float yVelocity) {
+    	this(boardWidth, boardHeight, xVelocity);
+    	
+    	setVelY(yVelocity);
+    }
+    
+    
     public int getRadius() {
 		return radius;
 	}
