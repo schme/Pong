@@ -1,6 +1,8 @@
 
 package com.laughingmasq.pong.game;
 
+import java.awt.Rectangle;
+
 import com.laughingmasq.pong.EntityType;
 
 /**
@@ -23,6 +25,11 @@ public class Pad extends Entity {
 	
 	/** for adding acceleration */
 	private boolean moving = false;
+	
+	/** TODO: swap logic to use upper left corner as a position.
+	 * At the moment only Rectangle does that.
+	 */
+	private Rectangle hitbox = null;
 
 
 	/**
@@ -38,12 +45,13 @@ public class Pad extends Entity {
     	
     	if( type == EntityType.LEFTPAD) {
     		setPosX( PADDING);
-    		setPosY( boardHeight/2 - HEIGHT/2);
+    		setPosY( boardHeight/2 + HEIGHT/2);
     		
     	} else if( type == EntityType.RIGHTPAD) {
     		setPosX( boardWidth - PADDING - WIDTH);
-    		setPosY( boardHeight/2 - HEIGHT/2);
+    		setPosY( boardHeight/2 + HEIGHT/2);
     	}
+    	
     }
     
     
@@ -96,10 +104,11 @@ public class Pad extends Entity {
     public void moveWithin2D(float spaceWidth, float spaceHeight) {
     	
     	/**
+    	 * Add acceleration to paddle when moving.
     	 * TODO: Fix: The other player can prevent other players acceleration
     	 * by wiggling their pad up and down.
     	 */
-    	if( moving) {
+    	if( moving ) {
     		if( Math.abs(getVelY()) > MAX_ACCELERATION) { 
     			setVelY( (getVelY() > 0 ? MAX_ACCELERATION : -MAX_ACCELERATION));
     		} else {
@@ -108,19 +117,25 @@ public class Pad extends Entity {
     	}
     	
     	/** if we would crash the top of the border, just move to the edge */
-    	if( getPosY() + getVelY() > spaceHeight - HEIGHT) { 
-    		setPosY( spaceHeight - HEIGHT);
+    	if( getPosY() + getVelY() > spaceHeight) { 
+    		setPosY( spaceHeight);
     	}
     	
     	/** if we crash to the bottom, just move to the edge */
-    	else if( getPosY() + getVelY() < 0) {
-    		setPosY( 0);
+    	else if( getPosY() + getVelY() < 0 + HEIGHT) {
+    		setPosY( 0 + HEIGHT);
     	}
     	
     	/** we crash nowhere, so use the regular move method */
     	else {
     		move();
     	}
+    }
+    
+    
+    @Override
+    public boolean collidesWith(Entity entity) {
+    	return false;
     }
     
 }

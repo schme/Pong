@@ -14,6 +14,7 @@ import com.laughingmasq.pong.graphics.SpriteFactory;
  */
 public abstract class Entity {
 	
+	private EntityType type = null;
 	
 	private float posX = 0;
 	private float posY = 0;
@@ -36,6 +37,7 @@ public abstract class Entity {
 	 */
 	public Entity (EntityType type) {
 		this.sprite = new SpriteFactory(type).create(this);
+		this.type = type;
 	}
 	
 	
@@ -63,6 +65,7 @@ public abstract class Entity {
 		this.posY = posY;
 		
 		this.sprite = new SpriteFactory(type).create(this);
+		this.type = type;
 	}
 
 	
@@ -82,6 +85,9 @@ public abstract class Entity {
 		return velY;
 	}
 	
+	public EntityType getType() {
+		return type;
+	}
 	
 	public void setPosX(float posX) {
 		this.posX = posX;
@@ -101,6 +107,16 @@ public abstract class Entity {
 	
 	public void setSprite(Sprite sprite) {
 		this.sprite = sprite;
+	}
+	
+	
+	public void addVelX(float velX) {
+		this.velX += velX;
+	}
+	
+	
+	public void addVelY(float velY) {
+		this.velY += velY;
 	}
 	
 	
@@ -141,4 +157,9 @@ public abstract class Entity {
 	 */
 	abstract public void moveWithin2D(float spaceWidth, float spaceHeight);
 	
+	
+	/**
+	 * 
+	 */
+	abstract public boolean collidesWith(Entity entity);
 }

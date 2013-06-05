@@ -1,7 +1,5 @@
 package com.laughingmasq.pong.game;
 
-import java.util.Random;
-
 import com.laughingmasq.pong.EntityType;
 
 /**
@@ -13,8 +11,6 @@ public class Ball extends Entity {
 
 	/** Initial radius, subject to change during the game */
     private int radius = 12;
-    
-    private Random rng;
 
     public Ball() {
 		super(EntityType.BALL, 0, 0);
@@ -35,12 +31,6 @@ public class Ball extends Entity {
     	} else {
     		setPosX(boardWidth/2); setPosY(boardHeight/2);
     	}
-    	
-    	
-    	//TODO: fix this, then test this
-    	rng = new Random();
-    	setVelX(rng.nextFloat() * 15);
-    	setVelY(rng.nextFloat() * 15);
     }
     
     
@@ -106,5 +96,12 @@ public class Ball extends Entity {
     	if( !xCollides && !yCollides) {
     		move();
     	}
+    }
+    
+    
+    @Override
+    public boolean collidesWith(Entity entity) {
+
+    	return false;
     }
 }

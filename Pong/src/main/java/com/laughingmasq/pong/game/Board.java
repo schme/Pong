@@ -63,7 +63,6 @@ public class Board {
      */
     private int randomSign() {
     	
-    	return (rng.nextBoolean() ? 1 : -1);
     	
     	/* It's so pretty I just want to keep it here. Note recursion.
     	 * Not sure what I was thinking though.
@@ -75,6 +74,8 @@ public class Board {
     	
     	return n/Math.abs(n);
     	*/
+    	
+    	return (rng.nextBoolean() ? 1 : -1);
     }
     
     
