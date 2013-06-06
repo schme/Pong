@@ -85,9 +85,32 @@ public class Board {
      */
     public void move() {
     	
+    	// Ball movement
+    	if( ball.collidesWith(padLeft)) {
+    		
+    		System.out.println("Collided with leftPad at: " + 
+    						ball.getPosX() + "," + ball.getPosY());
+    		
+    		ball.collideWithPad(ballYVelBase, padLeft);
+    	}
+    	else if( ball.collidesWith(padRight)) {
+    		
+    		System.out.println("Collided with rightPad at: " + 
+							ball.getPosX() + "," + ball.getPosY());
+    		
+    		ball.collideWithPad(ballYVelBase, padRight);
+    	}
+    	
+    	ball.moveWithin2D(boardWidth, boardHeight);
+    	padLeft.moveWithin2D(boardWidth, boardHeight);
+    	padRight.moveWithin2D(boardWidth, boardHeight);
+    	
+    	/**
+    	 * I really have to think this through. Keep it here as a reminder.
     	for( Entity e : entities) {
     		e.moveWithin2D(boardWidth, boardHeight);
     	}
+    	*/
     }
     
     

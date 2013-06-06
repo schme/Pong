@@ -25,11 +25,6 @@ public class Pad extends Entity {
 	
 	/** for adding acceleration */
 	private boolean moving = false;
-	
-	/** TODO: swap logic to use upper left corner as a position.
-	 * At the moment only Rectangle does that.
-	 */
-	private Rectangle hitbox = null;
 
 
 	/**
@@ -51,7 +46,7 @@ public class Pad extends Entity {
     		setPosX( boardWidth - PADDING - WIDTH);
     		setPosY( boardHeight/2 + HEIGHT/2);
     	}
-    	
+    	  	
     }
     
     
@@ -62,7 +57,6 @@ public class Pad extends Entity {
     public float getHeight() {
 		return HEIGHT;
 	}
-    
     
     /**
      * Sets the pad to move up (upgrades velocity).
