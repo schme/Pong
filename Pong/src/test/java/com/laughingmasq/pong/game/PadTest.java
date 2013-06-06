@@ -28,46 +28,46 @@ public class PadTest {
 
 
 	@Test
-	public void testLeftPadCorrectCoordinates() {	
+	public void testLeftPadCorrectCoordinatesOnConstruct() {	
 		
 		Pad lPad = new Pad(EntityType.LEFTPAD, BOARD_WIDTH, BOARD_HEIGHT);
 		
 		assertEquals(Pad.PADDING, lPad.getPosX(), 0.0001);
-		assertEquals(BOARD_HEIGHT/2 - Pad.HEIGHT/2, lPad.getPosY(), 0.0001);
+		assertEquals(BOARD_HEIGHT/2 + Pad.HEIGHT/2, lPad.getPosY(), 0.0001);
 	}
 	
 	
 	@Test
-	public void testLeftPadCorrectAbsurdBoardSizeCoordinates() {
+	public void testLeftPadCorrectAbsurdBoardSizeCoordinatesOnConstruct() {
 		
 		final float newBoardWidth = 1234567;
 		final float newBoardHeight = 9877;
 		Pad lPad = new Pad(EntityType.LEFTPAD, newBoardWidth, newBoardHeight);
 		
 		assertEquals(Pad.PADDING, lPad.getPosX(), 0.0001);
-		assertEquals(newBoardHeight/2 - Pad.HEIGHT/2, lPad.getPosY(), 0.0001);
+		assertEquals(newBoardHeight/2 + Pad.HEIGHT/2, lPad.getPosY(), 0.0001);
 	}
 	
 	
 	@Test
-	public void testRightPadCorrectCoordinates() {
+	public void testRightPadCorrectCoordinatesOnConstruc() {
 		
 		Pad rPad = new Pad(EntityType.RIGHTPAD, BOARD_WIDTH, BOARD_HEIGHT);
 		
 		assertEquals(BOARD_WIDTH - Pad.PADDING - Pad.WIDTH, rPad.getPosX(), 0.0001);
-		assertEquals(BOARD_HEIGHT/2 - Pad.HEIGHT/2, rPad.getPosY(), 0.0001);
+		assertEquals(BOARD_HEIGHT/2 + Pad.HEIGHT/2, rPad.getPosY(), 0.0001);
 	}
 
 	
 	@Test
-	public void testRightPadCorrectAbsurdBoardSizeCoordinates() {
+	public void testRightPadCorrectAbsurdBoardSizeCoordinatesOnConstruct() {
 		
 		final float newBoardWidth = 9276;
 		final float newBoardHeight = 1892724;
 		Pad rPad = new Pad(EntityType.RIGHTPAD, newBoardWidth, newBoardHeight);
 		
 		assertEquals(newBoardWidth - Pad.PADDING - Pad.WIDTH, rPad.getPosX(), 0.0001);
-		assertEquals(newBoardHeight/2 - Pad.HEIGHT/2, rPad.getPosY(), 0.0001);
+		assertEquals(newBoardHeight/2 + Pad.HEIGHT/2, rPad.getPosY(), 0.0001);
 	}
 	
 	

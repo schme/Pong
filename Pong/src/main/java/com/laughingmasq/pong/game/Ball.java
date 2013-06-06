@@ -14,6 +14,7 @@ public class Ball extends Entity {
 
 	/** Initial radius, subject to change during the game */
     private int radius = 12;
+    private boolean justCollided = false;
 
     public Ball() {
 		super(EntityType.BALL, 0, 0);
@@ -88,8 +89,6 @@ public class Ball extends Entity {
     	}
     	else {
     		
-    		System.out.println("Same height as rec at " + rec.x + "," + rec.y);
-    		System.out.println("At " + getPosX() + "," + getPosY());
     		/* ball is at right from the rectangle */
     		if( getPosX() - radius > rec.x + rec.width) {
     			return rec.contains(new Point((int)(getPosX() - radius), (int)getPosY()));

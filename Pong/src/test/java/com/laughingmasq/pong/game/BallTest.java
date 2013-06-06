@@ -15,6 +15,7 @@ import org.junit.Test;
 public class BallTest {
 	
 	private Ball ball;
+	private int radius;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -24,11 +25,13 @@ public class BallTest {
 		
 		ball.setVelX(5);
 		ball.setVelY(2);
+		
+		radius = ball.getRadius();
 	}
 	
 	
 	@Test
-	public void ballInitiatesPosToOrigoOnNegativeBoardValues() {
+	public void initiatesPosToOrigoOnNegativeBoardValues() {
 		
 		ball = new Ball(-1440, -900);
 		
@@ -38,7 +41,7 @@ public class BallTest {
 	
 	
 	@Test
-	public void ballInitiatesPosToOrigonOnZeroBoardValues() {
+	public void initiatesPosToOrigonOnZeroBoardValues() {
 		
 		ball = new Ball(0, 140);
 		
@@ -56,30 +59,40 @@ public class BallTest {
 
 	
 	@Test
-	public void ballCollidesWithBorderWorksProperly() {
+	public void collidesWithBorderSafelyInside() {
 		
-		int radius = ball.getRadius();
-		
-		/** safely inside */
 		assertFalse(ball.collidesWithBorder(ball.getPosX(), BOARD_WIDTH));
 		assertFalse(ball.collidesWithBorder(ball.getPosY(), BOARD_HEIGHT));
 		
-		/** at the border */
+	}
+	
+	
+	@Test
+	public void collidesWithBorderAtTheBorder() {
+		
 		assertTrue(ball.collidesWithBorder(BOARD_WIDTH - radius/2, BOARD_WIDTH));
 		assertTrue(ball.collidesWithBorder(BOARD_HEIGHT - radius/2, BOARD_HEIGHT));
+	}
+	
+	
+	@Test
+	public void ccllidesWithBorderHalfInHalfOut() {
 		
-		/** half in, half out */
 		assertTrue(ball.collidesWithBorder(BOARD_WIDTH, BOARD_WIDTH));
 		assertTrue(ball.collidesWithBorder(BOARD_HEIGHT, BOARD_HEIGHT));
+	}
+	
+	
+	@Test
+	public void collidesWithBorderOutside() {
 		
-		/** totally outside of X */
 		assertTrue(ball.collidesWithBorder(BOARD_WIDTH*2, BOARD_WIDTH));
 		assertTrue(ball.collidesWithBorder(BOARD_HEIGHT*2, BOARD_HEIGHT));
 	}
 	
 	
 	@Test
-	public void ballMirrorsButDoesNotMoveWhenOutOf2dSpace() {
+	public void mirrorsButDoesNotMoveWhenOutOf2dSpace() {
 		
 		ball.setPosX(50);
 		ball.setPosY(50);
@@ -92,61 +105,5 @@ public class BallTest {
 		assertEquals(50, ball.getPosX(), 0.0001);
 		assertEquals(50, ball.getPosY(), 0.0001);
 	}
-	
-	
-	@Test
-	/**
-	 * Entity.move() test more than a Ball test.
-	 */
-	public void entityMovesTheCorrectAmountWithSimpleValues() {
-		
-		float velX = ball.getVelX();
-		float velY = ball.getVelY();
-		float posX = ball.getPosX();
-		float posY = ball.getPosY();
-		ball.move();
-		
-		assertEquals( posX + velX, ball.getPosX(), 0.0001);
-		assertEquals( posY + velY, ball.getPosY(), 0.0001);
-	}
-	
-	
-	@Test
-	public void entityMovesTheCorrectAmountWithSimpleNegativeValues() {
-		
-		ball.setVelX(-32);
-		ball.setVelY(-5);
-		float posX = ball.getPosX();
-		float posY = ball.getPosY();
-		ball.move();
-		
-		assertEquals( posX + -32, ball.getPosX(), 0.0001);
-		assertEquals( posY + -5, ball.getPosY(), 0.0001);
-	}
-	
-	
-	@Test
-	public void entityDoesNotMoveWithZeroVelocity() {
-		
-		ball.setVelX(0);
-		ball.setVelY(0);
-		float posX = ball.getPosX();
-		float posY = ball.getPosY();
-		ball.move();
-		
-		assertEquals(posX, ball.getPosX(), 0.0001);
-		assertEquals(posY, ball.getPosY(), 0.0001);
-	}
-	
-	
-	@Test
-	public void entityMoveAmountMovesGivenAmount() {
-
-		ball.moveAmount(33, -50);
-		
-		assertEquals(BOARD_WIDTH/2 + 33, ball.getPosX(), 0.0001);
-		assertEquals(BOARD_HEIGHT/2 - 50, ball.getPosY(), 0.0001);	
-	}
-	
 	
 }

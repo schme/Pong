@@ -10,3 +10,7 @@
 28.5 - 1h - Tests/Javadocs
 29.5 - 2h - Tests/Javadocs
 30.5 - 5h - Tests/Javadocs
+3.6  - 2h - Yleistä säätöä
+5.6  - 2h - Huonoa collision detectionia ja englishiä
+6.6  - 1h - huonoa collision detectionia ja englishiä
+6.6  - 1h - Testien järjestelyä, sequence kaaviot
