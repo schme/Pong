@@ -116,8 +116,8 @@ public class Pad extends Entity {
     	}
     	
     	/** if we crash to the bottom, just move to the edge */
-    	else if( getPosY() + getVelY() < 0 + HEIGHT) {
-    		setPosY( 0 + HEIGHT);
+    	else if( getPosY() + getVelY() < HEIGHT) {
+    		setPosY( HEIGHT);
     	}
     	
     	/** we crash nowhere, so use the regular move method */

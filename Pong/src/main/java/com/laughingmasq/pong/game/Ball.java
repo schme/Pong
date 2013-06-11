@@ -1,6 +1,5 @@
 package com.laughingmasq.pong.game;
 
-import java.awt.Point;
 import java.awt.Rectangle;
 
 import com.laughingmasq.pong.EntityType;
@@ -13,7 +12,7 @@ import com.laughingmasq.pong.EntityType;
 public class Ball extends Entity {
 
 	/** Initial radius, subject to change during the game */
-    private int radius = 12;
+    private int radius = 10;
     private boolean justCollided = false;
 
     public Ball() {
@@ -77,33 +76,44 @@ public class Ball extends Entity {
     /**
      * Check if we collide with a rectangle.
      * 
-     * Ugly. So ugly and inefficient.
      * @param rec	Rectangle we check against.
      * @return
      */
     protected boolean collidesWithRectangle(Rectangle rec) {
     	
-    	/* If the ball is not at the same height as pad */
-    	if( getPosY() - radius > rec.y || getPosY() + radius < rec.y - rec.height) {
-    		return false;
+    	boolean collision = false;
+
+    	collision = rec.intersects(new Rectangle(
+    		(int)(getPosX() - radius), (int)(getPosY() - radius), 
+    		radius*2, radius*2));
+
+    	/* new collision */
+    	if( collision && !justCollided ) { 
+    		justCollided = false; 
+  		}
+    	/* still in a collision */
+    	else if( collision && justCollided ) { 
+    		return false; 
     	}
-    	else {
-    		
-    		/* ball is at right from the rectangle */
-    		if( getPosX() - radius > rec.x + rec.width) {
-    			return rec.contains(new Point((int)(getPosX() - radius), (int)getPosY()));
-    		
-    		/* ball is at left from the rectangle */
-    		} else if( getPosX() + radius < rec.x ){
-    			return rec.contains(new Point((int)(getPosX() + radius), (int)getPosY()));
-    		}
-    		
-    		return true;
+    	/* out of a collision */
+    	else if( !collision && justCollided ) {
+    		justCollided = false;
     	}
-    	
-    	
+    	return collision;
     }
     
+    
+    /**
+     * We're really making too many rectangles here. Just use the friggin'
+     * reference already and store it somewhere! Just move it around!
+     * TODO: Learn to code.
+     */
+    protected int positionFromPad(Pad pad) {
+    	Rectangle r = new Rectangle((int)pad.getPosX(), (int)pad.getPosY() - (int)(pad.getHeight()), 
+    			(int)pad.getWidth(), (int)pad.getHeight());
+    	
+    	return r.outcode(getPosX(), getPosY());
+    }
     
     /**
      * A check to see if given position and border with Entity's size fits.
@@ -124,13 +134,15 @@ public class Ball extends Entity {
     /**
      * Ugly, but the proper implementations requires bigger changes.
      * Change if time allows.
+     * Java awt uses different coordinates than OpenGL (which the logic uses),
+     * so this section will seem very weird.
      * @param pad	The pad we are testing against.
      * @return	True if collides, false otherwise
      */
     public boolean collidesWith(Pad pad) {
     	
     	return collidesWithRectangle(
-    			new Rectangle((int)pad.getPosX(), (int)pad.getPosY(), 
+    			new Rectangle((int)pad.getPosX(), (int)pad.getPosY() - (int)pad.getHeight(), 
     						(int)pad.getWidth(), (int)pad.getHeight()));
     }
     
@@ -141,7 +153,7 @@ public class Ball extends Entity {
      */
     @Override
     public void moveWithin2D(float spaceWidth, float spaceHeight) {
-
+    	
     	boolean xCollides = collidesWithBorder(getPosX() + getVelX(), spaceWidth);
     	boolean yCollides = collidesWithBorder(getPosY() + getVelY(), spaceHeight);
     	
@@ -161,13 +173,36 @@ public class Ball extends Entity {
     
     @Override
     public boolean collidesWith(Entity entity) {
-
     	return false;
     }
     
     
     public void collideWithPad(float baseYVel, Pad pad) {
-    	setVelX(getVelX() * -1);
-    	setVelY(baseYVel + getEnglish(pad.getVelY()));
+    	
+    	int position = positionFromPad(pad);
+    	
+    	
+    	/* apply english if pad and ball go the same direction */
+    	if( pad.getVelY() > 0 && getVelY() > 0) {
+    		setVelY(baseYVel + getEnglish(pad.getVelY()));
+    	}
+    	else if( pad.getVelY() < 0 && getVelY() < 0) {
+    		setVelY(-baseYVel + getEnglish(pad.getVelY()));
+    	}
+
+    	
+    	/* collided at top or bottom */
+    	if( getPosY() > pad.getPosY() ||
+        	getPosY() < pad.getPosY() - pad.getHeight())
+        {
+        	setVelY(getVelY() * -1);
+        }
+    	
+    	if( position == Rectangle.OUT_BOTTOM || position == Rectangle.OUT_TOP) {
+    		setVelY(getVelY() * -1);
+    	}
+    	else if( position == Rectangle.OUT_LEFT || position == Rectangle.OUT_RIGHT) {
+    		setVelX(getVelX() * -1);
+    	}
     }
 }

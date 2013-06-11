@@ -15,7 +15,7 @@ import com.laughingmasq.pong.InputHandler;
  */
 public class Board {
 	
-	private float ballXVel = 15;
+	private float ballXVel = 10;
 	private float ballYVelBase = 4;
 	
 	private float boardWidth;
