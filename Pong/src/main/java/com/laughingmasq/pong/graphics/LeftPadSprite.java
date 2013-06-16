@@ -6,13 +6,23 @@ import com.laughingmasq.pong.game.Pad;
 
 import com.laughingmasq.pong.game.Entity;
 
+
+/**
+ * Sprite for the left player pad.
+ * @author schme
+ */
 public class LeftPadSprite extends Sprite {
 	
 
+	/**
+	 * Stores the left pad entity.
+	 * @param entity	Left pad entity
+	 */
 	public LeftPadSprite(Entity entity) {
 		super(entity);
 	}
 
+	
 	@Override
 	public void draw() {
 		
@@ -33,10 +43,20 @@ public class LeftPadSprite extends Sprite {
 	    GL11.glEnd();
 	}
 	
+	
+	/**
+	 * Retrieves the pad width from the pad entity.
+	 * @return		Current width of the pad.
+	 */
 	private float getWidth() {
 		return ((Pad)getEntity()).getWidth();
 	}
 	
+	
+	/**
+	 * Retrieves the pad height from the pad entity.
+	 * @return		Current height of the pad.
+	 */
 	private float getHeight() {
 		return ((Pad)getEntity()).getHeight();
 	}

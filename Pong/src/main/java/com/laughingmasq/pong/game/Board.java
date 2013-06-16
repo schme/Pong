@@ -39,6 +39,8 @@ public class Board {
     /**
      * Creates one ball and left- and right pads in their corresponding 
      * positions.
+     * @param boardWidth		Width of the board
+     * @param boardHeight		Height of the board
      */
     public Board(float boardWidth, float boardHeight) {
     	
@@ -61,6 +63,43 @@ public class Board {
     }
 
     
+    public float getBoardWidth() {
+		return boardWidth;
+	}
+    
+    public float getBoardHeight() {
+		return boardHeight;
+	}
+    
+    public Ball getBall() {
+		return ball;
+	}
+    
+    public Pad getPadLeft() {
+		return padLeft;
+	}
+    
+    public Pad getPadRight() {
+		return padRight;
+	}
+    
+    public List<Entity> getEntities() {
+		return entities;
+	}
+    
+    public int getLeftScore() {
+		return leftScore;
+	}
+    
+    public int getRightScore() {
+		return rightScore;
+	}
+    
+    public boolean isPaused() {
+		return paused;
+	}
+    
+    
     /**
      * Create a random sign.
      * @return	Either 1 or -1
@@ -71,6 +110,10 @@ public class Board {
     }
     
     
+    /**
+     * Inceases the score of a player.
+     * @param ballAtLeft		True if ball collided at the left side.
+     */
     private void scoreSide( boolean ballAtLeft) {
     	if( ballAtLeft) {
     		++rightScore;
@@ -82,17 +125,9 @@ public class Board {
     }
     
     
-    public int getLeftScore() {
-		return leftScore;
-	}
-    
-    public int getRightScore() {
-		return rightScore;
-	}
-    
-    
     /**
      * Moves all the entities within their board limits.
+     * @return		True if a player scored (ball hit left or right border)
      */
     public boolean moveEntities() {
     	
@@ -119,50 +154,27 @@ public class Board {
     }
     
     
+    /**
+     * Resets the used ball.
+     * TODO: Try just creating a new ball instead of reseting.
+     */
     public void resetBall() {
         ball.reset(boardWidth, boardHeight, 
         		randomSign()*ballXVel, randomSign()*ballYVelBase);
     }
     
     
+    /**
+     * Toggles the pause status.
+     */
     public void pause() {
     	paused = !paused;
     }
     
     
-    public float getBoardWidth() {
-		return boardWidth;
-	}
-    
-    public float getBoardHeight() {
-		return boardHeight;
-	}
-    
-    public Ball getBall() {
-		return ball;
-	}
-    
-    
-    public Pad getPadLeft() {
-		return padLeft;
-	}
-    
-    
-    public Pad getPadRight() {
-		return padRight;
-	}
-    
-    
-    public List<Entity> getEntities() {
-		return entities;
-	}
-    
-    
-    public boolean isPaused() {
-		return paused;
-	}
-    
-    
+    /**
+     * Call input handler to retrieve the input.
+     */
     public void handleInput() {
     	inputHandler.handleInput();
     }

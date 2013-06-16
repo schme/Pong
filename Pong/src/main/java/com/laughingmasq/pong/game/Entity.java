@@ -6,15 +6,13 @@ import com.laughingmasq.pong.graphics.SpriteFactory;
 
 
 /**
- * Super class for all entities (especially movable) in the game.
+ * Super class for all entities (especially movable) in the game. All entities
+ * should be using this class as a base.
  * 
- * @param type
  * @author schme
- *
  */
 public abstract class Entity {
 	
-	private EntityType type = null;
 	
 	private float posX = 0;
 	private float posY = 0;
@@ -22,6 +20,7 @@ public abstract class Entity {
 	private float velX = 0;
 	private float velY = 0;
 	
+	private EntityType type = null;
 	private Sprite sprite = null;
 	
 	
@@ -42,7 +41,7 @@ public abstract class Entity {
 	
 	
 	/**
-	 * Create an Entity with a position but a null Sprite object.
+	 * Create an Entity with a position but a null Sprite object and no type.
 	 * @param posX	Given X coordinate.
 	 * @param posY	Given Y coordinate.
 	 */
@@ -110,11 +109,19 @@ public abstract class Entity {
 	}
 	
 	
+	/**
+	 * Adds to the current x velocity
+	 * @param velX		Amount to add
+	 */
 	public void addVelX(float velX) {
 		this.velX += velX;
 	}
 	
 	
+	/**
+	 * Adds to the current y velocity
+	 * @param velY		Amount to add
+	 */
 	public void addVelY(float velY) {
 		this.velY += velY;
 	}
@@ -130,7 +137,7 @@ public abstract class Entity {
 	
 	
 	/**
-	 * Move with a given velocity.
+	 * Move with a given velocity instead of the objects current velocity.
 	 * @param amountX	Given velocity for X.
 	 * @param amountY	Given velocity for Y.
 	 */
@@ -141,7 +148,7 @@ public abstract class Entity {
 	
 	
 	/**
-	 * Calls Sprite objects draw method (if sprite != null).
+	 * Call Sprite objects draw method (if sprite != null).
 	 */
 	public void draw() {
 		if( sprite != null) {
@@ -151,15 +158,10 @@ public abstract class Entity {
 	
 
 	/**
-	 * Move within a 2D space.
+	 * Move within a 2D space. Border collision etc. should be done here.
 	 * @param spaceWidth
 	 * @param spaceHeight
 	 */
 	abstract public boolean moveWithin2D(float spaceWidth, float spaceHeight);
 	
-	
-	/**
-	 * 
-	 */
-	abstract public boolean collidesWith(Entity entity);
 }

@@ -21,13 +21,13 @@ public class Pad extends Entity {
 	/** times the velocity */
 	protected static float BASE_ACCELERATION = 1.05f;
 	
-	/** for adding acceleration */
+	/** if we moved the previous frame */
 	private boolean moving = false;
 
 
 	/**
-	 * Create a pad with a type, position and
-	 * Position is the bottom left corner of the pad.
+	 * Create a pad with a type and position (position depends on the type)
+	 * Position coordinate is the top left corner of the pad.
 	 * 
 	 * @param type			Type of the pad.
 	 * @param boardWidth	Width of the used board.
@@ -98,7 +98,7 @@ public class Pad extends Entity {
     	/**
     	 * Add acceleration to paddle when moving.
     	 * TODO: Fix: The other player can prevent other players acceleration
-    	 * by wiggling their pad up and down.
+    	 * by wiggling their pad up and down (no idea why this happens).
     	 */
     	if( moving ) {
     		if( Math.abs(getVelY()) > MAX_ACCELERATION) { 
@@ -124,12 +124,7 @@ public class Pad extends Entity {
     	else {
     		move();
     	}
-    	return false;
-    }
-    
-    
-    @Override
-    public boolean collidesWith(Entity entity) {
+    	
     	return false;
     }
     

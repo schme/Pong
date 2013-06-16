@@ -11,13 +11,14 @@ import org.lwjgl.opengl.GL11;
 import com.laughingmasq.pong.game.Entity;
  
 /**
- * Combines the graphic settings. Handles most of the calls to lwjgl.
+ * Combines the graphic settings. Handles window, sync rate and rendering that is not
+ * related to a certain entity (sprites do that).
  * @author schme
  */
 public class Graphics {
 	
 	
-	private String title = "Pong v0.01";
+	private String title = "Pong Alpha v0.9";
 	
 	/** for faster circle drawing */
 	private final float DEG2RAD = (float)3.14159/180;
@@ -26,9 +27,11 @@ public class Graphics {
 	private int resolutionY;
 	private int fps = 60;
 	
+	/** the dimensions for the middle line */
 	private float middleLineWidth = 10f;
 	private float middleBallRadius = 15f;
 	
+	/** settings for score displaying */
 	private float scorePadding = 30f;
 	private float scoreGap = 5f;
 	private float scoreSide = 5f;
@@ -85,6 +88,9 @@ public class Graphics {
     }
     
     
+    /**
+     * Draw things behind the entities. e.g. the middle line.
+     */
     private void drawBackground() {
     	
 		GL11.glColor3f(0.2f,0.2f,0.2f);
@@ -111,6 +117,11 @@ public class Graphics {
     }
     
     
+    /**
+     * Draw a score box.
+     * @param x		X value of the top left corner of the score box.
+     * @param y		Y value of the top left corner of the score box.
+     */
     private void drawScore(float x, float y) {
     	
     	GL11.glBegin(GL11.GL_QUADS);
@@ -122,6 +133,11 @@ public class Graphics {
     }
     
     
+    /**
+     * Draw the current scores as tiny green squares.
+     * @param leftScore		Score of the left player
+     * @param rightScore	Score of the right player
+     */
     private void drawScores(int leftScore, int rightScore) {
     	
     	GL11.glColor3f(0.0f, 1.0f, 0.0f);
@@ -140,7 +156,7 @@ public class Graphics {
     
     
     /**
-     * If X has been pressed.
+     * If X (in the game window) has been pressed.
      * @return	True if X has been pressed, false otherwise.
      */
     public boolean isCloseRequested() {
@@ -149,8 +165,11 @@ public class Graphics {
     
     
     /**
-     * Handles all the drawing.
-     * @param entities
+     * Does all the drawing. If you something to be drawn, add it here.
+     * @param entities		List of entities on the board
+     * @param leftScore		Score for the left hand player
+     * @param rightScore	Score for the right hand player
+     * @param paused		If the game is currently paused
      */
     public void draw(List<Entity> entities, int leftScore, int rightScore, boolean paused) {
     	
@@ -170,6 +189,7 @@ public class Graphics {
     		e.draw();
     	}
      
+    	/** darkens the screen */
     	if(paused) { pause(); }
     	
     	update();
@@ -178,13 +198,16 @@ public class Graphics {
     
     
     /**
-     * Called when resized.
+     * Called when resized. Adjust the viewport.
      */
     public void resize() {
     	GL11.glViewport(0, 0, Display.getWidth(), Display.getHeight());
     }
     
     
+    /**
+     * Swaps the framebuffer and calls the sync function.
+     */
     public void update() {
     	Display.update();	// Swaps the framebuffer
     	Display.sync(fps);
@@ -199,6 +222,10 @@ public class Graphics {
     }
     
     
+    /**
+     * Dims the screen (draws an opaque dark square on the board).
+     * Used when the game is paused.
+     */
     public void pause() {
     	
     	GL11.glColor4f(0f, 0f, 0f, 0.5f);
