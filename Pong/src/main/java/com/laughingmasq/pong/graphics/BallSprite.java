@@ -33,10 +33,9 @@ public class BallSprite extends Sprite {
 	@Override
 	public void draw() {
 
-		//placeholder graphics
-		GL11.glColor3f(0.6f,1.0f,0.6f);
+		GL11.glColor3f(0.0f,0.6f,0.0f);
 
-		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 
 		for (int i=0; i < 360; i++)
 		{

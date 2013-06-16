@@ -17,6 +17,10 @@ public class Board {
 	
 	private float ballXVel = 10;
 	private float ballYVelBase = 4;
+	private int leftScore = 0;
+	private int rightScore = 0;
+	
+	private boolean paused = false;
 	
 	private float boardWidth;
 	private float boardHeight;
@@ -62,28 +66,37 @@ public class Board {
      * @return	Either 1 or -1
      */
     private int randomSign() {
-    	
-    	
-    	/* It's so pretty I just want to keep it here. Note recursion.
-    	 * Not sure what I was thinking though.
 
-    	int n = rng.nextInt(100) - 50;
-    	if(n == 0) {
-    		return randomSign();
-    	}
-    	
-    	return n/Math.abs(n);
-    	*/
-    	
     	return (rng.nextBoolean() ? 1 : -1);
     }
     
+    
+    private void scoreSide( boolean ballAtLeft) {
+    	if( ballAtLeft) {
+    		++rightScore;
+    	} else {
+    		++leftScore;
+    	}
+    	System.out.println("Left Score: " + leftScore);
+    	System.out.println("Right Score: " + rightScore);
+    }
+    
+    
+    public int getLeftScore() {
+		return leftScore;
+	}
+    
+    public int getRightScore() {
+		return rightScore;
+	}
     
     
     /**
      * Moves all the entities within their board limits.
      */
-    public void moveEntities() {
+    public boolean moveEntities() {
+    	
+    	boolean scored = false;
     	
     	// Ball movement
     	if( ball.collidesWith(padLeft)) {
@@ -94,17 +107,26 @@ public class Board {
     		
     		ball.collideWithPad(ballYVelBase, padRight);
     	}
-    	
-    	ball.moveWithin2D(boardWidth, boardHeight);
+
+    	/* true when ball hits the left or right border */
+    	if(scored = ball.moveWithin2D(boardWidth, boardHeight)) {
+    		scoreSide( ball.atLeftSide(boardWidth));
+    	}
     	padLeft.moveWithin2D(boardWidth, boardHeight);
     	padRight.moveWithin2D(boardWidth, boardHeight);
     	
-    	/**
-    	 * I really have to think this through. Keep it here as a reminder.
-    	for( Entity e : entities) {
-    		e.moveWithin2D(boardWidth, boardHeight);
-    	}
-    	*/
+    	return scored;
+    }
+    
+    
+    public void resetBall() {
+        ball.reset(boardWidth, boardHeight, 
+        		randomSign()*ballXVel, randomSign()*ballYVelBase);
+    }
+    
+    
+    public void pause() {
+    	paused = !paused;
     }
     
     
@@ -135,7 +157,12 @@ public class Board {
 		return entities;
 	}
     
-   
+    
+    public boolean isPaused() {
+		return paused;
+	}
+    
+    
     public void handleInput() {
     	inputHandler.handleInput();
     }

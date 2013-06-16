@@ -6,7 +6,7 @@ import com.laughingmasq.pong.game.Board;
 
 
 /**
- * Handles all incoming input.
+ * Handles all incoming input and relays it to a Board class.
  * @author schme
  *
  */
@@ -30,12 +30,17 @@ public class InputHandler {
 	 */
 	public void handleInput() {
 		while( Keyboard.next() ) {
+			
+			pause();
 			leftPlayer();
 			rightPlayer();
 		}
 	}
 	
 	
+	/**
+	 * Takes the input from the left side player.
+	 */
 	private void leftPlayer() {
 		
 		if( Keyboard.isKeyDown(KEY_W)) {
@@ -50,6 +55,9 @@ public class InputHandler {
 	}
 	
 	
+	/**
+	 * Takes the input from the right side player.
+	 */
 	private void rightPlayer() {
 		
 		if( Keyboard.isKeyDown(KEY_UP)) {
@@ -60,6 +68,17 @@ public class InputHandler {
 			
 		} else {
 			board.getPadRight().stop();
+		}
+	}
+	
+	
+	/**
+	 * Checks if the games pause key is pressed.
+	 */
+	private void pause() {
+		
+		if( Keyboard.isKeyDown(KEY_P)) {
+			board.pause();
 		}
 	}
 	

@@ -152,13 +152,14 @@ public class Ball extends Entity {
      * TODO: Still travel the whole trip if you're going to collide.
      */
     @Override
-    public void moveWithin2D(float spaceWidth, float spaceHeight) {
+    public boolean moveWithin2D(float spaceWidth, float spaceHeight) {
     	
     	boolean xCollides = collidesWithBorder(getPosX() + getVelX(), spaceWidth);
     	boolean yCollides = collidesWithBorder(getPosY() + getVelY(), spaceHeight);
     	
     	if( xCollides ) {
     		setVelX(getVelX() * -1);
+    		return true;
     	}
     	
     	if( yCollides) {
@@ -168,6 +169,7 @@ public class Ball extends Entity {
     	if( !xCollides && !yCollides) {
     		move();
     	}
+    	return false;
     }
     
     
@@ -205,4 +207,25 @@ public class Ball extends Entity {
     		setVelX(getVelX() * -1);
     	}
     }
+    
+    
+    /**
+     * A quick test to determine the side.
+     * @param boardWidth Width of the tested board
+     * @return	true if ball is at the left side, false otherwise
+     */
+    public boolean atLeftSide(float boardWidth) {
+    	if( getPosX() < boardWidth/2) {
+    		return true;
+    	}
+    	return false;
+    }
+    
+    
+    public void reset(float boardWidth, float boardHeight, float velocityX, float velocityY) {
+    	setPosX(boardWidth/2); setPosY(boardHeight/2);
+    	setVelX(velocityX); setVelY(velocityY);
+    }
+    
+    
 }

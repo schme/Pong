@@ -155,7 +155,7 @@ public abstract class Entity {
 	 * @param spaceWidth
 	 * @param spaceHeight
 	 */
-	abstract public void moveWithin2D(float spaceWidth, float spaceHeight);
+	abstract public boolean moveWithin2D(float spaceWidth, float spaceHeight);
 	
 	
 	/**

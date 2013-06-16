@@ -1,8 +1,6 @@
 
 package com.laughingmasq.pong.game;
 
-import java.awt.Rectangle;
-
 import com.laughingmasq.pong.EntityType;
 
 /**
@@ -95,7 +93,7 @@ public class Pad extends Entity {
      * @param spaceHeight	Spaces Y boundary.
      */
     @Override
-    public void moveWithin2D(float spaceWidth, float spaceHeight) {
+    public boolean moveWithin2D(float spaceWidth, float spaceHeight) {
     	
     	/**
     	 * Add acceleration to paddle when moving.
@@ -113,17 +111,20 @@ public class Pad extends Entity {
     	/** if we would crash the top of the border, just move to the edge */
     	if( getPosY() + getVelY() > spaceHeight) { 
     		setPosY( spaceHeight);
+    		return true;
     	}
     	
     	/** if we crash to the bottom, just move to the edge */
     	else if( getPosY() + getVelY() < HEIGHT) {
     		setPosY( HEIGHT);
+    		return true;
     	}
     	
     	/** we crash nowhere, so use the regular move method */
     	else {
     		move();
     	}
+    	return false;
     }
     
     

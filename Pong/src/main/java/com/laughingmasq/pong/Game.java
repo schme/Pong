@@ -5,12 +5,16 @@ import com.laughingmasq.pong.graphics.*;
 
 /**
  * @author schme
- * Basically combines logic and graphic.
+ * Combines logic and graphic.
+ * 
+ * This class relays information between graphics and logic. See Board class to
+ * compare what part of logic is held in here, and what in Board.
  */
 public class Game {
 	
-	private int resolutionX = 1440;
-	private int resolutionY = 900;
+	/** The size of the board */
+	private int boardWidth = 1440;
+	private int boardHeight = 900;
 	
 	private boolean playing = false;
 
@@ -20,13 +24,16 @@ public class Game {
     /** Graphical */
     private Graphics graphics;
     
+    /**
+     * Game takes no arguments. Initializes a board and a graphics class.
+     */
     public Game() {
-        this.board 		= new Board(resolutionX, resolutionY);
-        this.graphics   = new Graphics(resolutionX, resolutionY);
+        this.board 		= new Board(boardWidth, boardHeight);
+        this.graphics   = new Graphics(boardWidth, boardHeight);
     }
 
     /**
-     * Starting point for the program.
+     * Starting point for the program. Contains the game loop.
      */
     public void run() {
     	
@@ -34,9 +41,15 @@ public class Game {
     	
     	
     	while( playing && !graphics.isCloseRequested() ) {
+    		
     		board.handleInput();
-    		board.moveEntities();
-    		graphics.draw(board.getEntities());
+ 
+    		/** if board is paused, don't move entities */
+    		if( !board.isPaused() && board.moveEntities()) {
+    			board.resetBall();
+    		}
+    		graphics.draw(board.getEntities(), board.getLeftScore(), board.getRightScore(),
+    						board.isPaused());
     	}
     	
     	graphics.destroy();
