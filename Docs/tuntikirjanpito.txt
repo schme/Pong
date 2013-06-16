@@ -14,3 +14,6 @@
 5.6  - 2h - Huonoa collision detectionia ja englishiä
 6.6  - 1h - huonoa collision detectionia ja englishiä
 6.6  - 1h - Testien järjestelyä, sequence kaaviot
+10.6 - 1h - collision
+11.6 - 2h - scoret, taustalle piirretty tavaraa
+16.6 - 5h - valmistelua lopulliseen (javadocs, testejä, luokkakaavio jne)

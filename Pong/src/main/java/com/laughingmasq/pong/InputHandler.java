@@ -31,7 +31,7 @@ public class InputHandler {
 	public void handleInput() {
 		while( Keyboard.next() ) {
 			
-			pause();
+			ifPause();
 			leftPlayer();
 			rightPlayer();
 		}
@@ -75,7 +75,7 @@ public class InputHandler {
 	/**
 	 * Checks if the games pause key is pressed.
 	 */
-	private void pause() {
+	private void ifPause() {
 		
 		if( Keyboard.isKeyDown(KEY_P)) {
 			board.pause();

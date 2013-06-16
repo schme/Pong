@@ -92,15 +92,39 @@ public class BallTest {
 	
 	
 	@Test
-	public void mirrorsButDoesNotMoveWhenOutOf2dSpace() {
+	public void returnsTrueWhenOutOfXSpace() {
 		
 		ball.setPosX(50);
 		ball.setPosY(50);
 		ball.setVelX(15);
 		ball.setVelY(15);
-		ball.moveWithin2D(55, 55);
 		
-		assertEquals(-15, ball.getVelX(), 0.0001);
+		assertTrue( ball.moveWithin2D(55, 55));
+	}
+	
+	
+	@Test
+	public void returnsFalseWhenInsideXSpace() {
+		
+		ball.setPosX(100);
+		ball.setPosY(100);
+		ball.setVelX(20);
+		ball.setVelY(15);
+		
+		assertFalse( ball.moveWithin2D(1000, 1000));
+	}
+	
+	
+	@Test
+	public void mirrorsYWhenOutOfYSpace() {
+		
+		ball.setPosX(50);
+		ball.setPosY(50);
+		ball.setVelX(15);
+		ball.setVelY(15);
+		ball.moveWithin2D(1000, 55);
+		
+		assertEquals(15, ball.getVelX(), 0.0001);
 		assertEquals(-15, ball.getVelY(), 0.0001);
 		assertEquals(50, ball.getPosX(), 0.0001);
 		assertEquals(50, ball.getPosY(), 0.0001);

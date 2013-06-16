@@ -122,7 +122,6 @@ public class Ball extends Entity {
      * Checks if we're on top, to the right, left or at the bottom of the pad.
      * TODO: We're really making too many rectangles here. Just use the friggin'
      * reference already and store it somewhere! Just move it around!
-     * TODO: Learn to code.
      * @param pad	Pad we check for
      * @return		The Rectangle2D static: OUT_BOTTOM, OUT_LEFT, OUT_RIGHT, OUT_TOP.
      */
@@ -136,7 +135,7 @@ public class Ball extends Entity {
     /**
      * A check to see if we've gone beyond a border or not.
      * @param position	Given position.
-     * @param strain	Given border.
+     * @param border	Given border.
      * @return	True if inside the given restrains.
      */
     protected boolean collidesWithBorder(float position, float border) {
@@ -242,7 +241,6 @@ public class Ball extends Entity {
     	boolean yCollides = collidesWithBorder(getPosY() + getVelY(), spaceHeight);
     	
     	if( xCollides ) {
-    		setVelX(getVelX() * -1);
     		return true;
     	}
     	

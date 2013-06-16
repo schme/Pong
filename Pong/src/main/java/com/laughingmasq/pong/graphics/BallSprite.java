@@ -27,7 +27,7 @@ public class BallSprite extends Sprite {
 	
 	/**
 	 * Gets the radius of the ball from the ball entity.
-	 * @return
+	 * @return			Radius of the ball
 	 */
 	private float getRadius() {
 		 return ((Ball) getEntity()).getRadius();
